@@ -5,6 +5,7 @@
  */
 package projet;
 
+import Interface.frmStart;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +33,9 @@ public class Projet {
 
         cs.sauvegarde(listeParametres);
         System.out.println("Hello word");
+        
+        frmStart frm = new frmStart();
+        frm.setVisible(true);
     }
     
 }
