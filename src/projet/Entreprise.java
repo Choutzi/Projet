@@ -5,6 +5,7 @@
  */
 package projet;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -23,23 +24,35 @@ public class Entreprise {
        }
     }
    
-   public void addMission(ArrayList<String[]> mission){
-       for(int i=0; i<mission.size();i++){
+   public void addMission(ArrayList<String[]> mission) throws ParseException{
+       for(int i=0; i<(mission.size());i++){
            this.ListeMission.add(new Mission(mission.get(i)));
        }
     }
    
-   public void addPersonnel(ArrayList<String[]> personnel){
+   public void addPersonnel(ArrayList<String[]> personnel) throws ParseException{
        for(int i=0; i<personnel.size();i++){
            this.ListePersonnel.add(new Personnel(personnel.get(i)));
        }
     }
+   
+   public Competence existCompetence(String s){
+       for(Competence comp : this.ListeCompetence){
+           if(comp.getIdentifiant()==s)
+               return comp;
+       }
+       return null;
+   }
     
     @Override
     public String toString(){
         String ec="";
-        for(int i=0; i<this.ListeCompetence.size();i++){
+        /*for(int i=0; i<this.ListeCompetence.size();i++){
             ec=ec+this.ListeCompetence.get(i).toString()+"\n";
+        }
+        return ec;*/
+        for(int i=0; i<this.ListeMission.size();i++){
+            ec=ec+this.ListeMission.get(i).toString()+"\n";
         }
         return ec;
     }    

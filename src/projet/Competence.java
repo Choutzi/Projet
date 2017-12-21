@@ -20,8 +20,12 @@ public class Competence {
         this.descriptionFr=comp[2];
     }
     
+    public String getIdentifiant(){
+        return this.identifiant;
+    }
+    
     @Override
     public String toString(){
-        return this.identifiant+" : "+this.descriptionEng+" >> Traduction : "+this.descriptionFr;
+        return this.identifiant+";"+this.descriptionEng+";"+this.descriptionFr;
     }
 }
