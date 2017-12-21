@@ -5,8 +5,12 @@
  */
 package projet;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -18,10 +22,25 @@ public class Mission {
     private String descriptif;
     private Date dateDeb;
     private int duree;
-    private ArrayList<Personnel> equipe;
+    private ArrayList<Personnel> equipe=new ArrayList<Personnel>();
     private enum statut{Preparation, Planifiee, EnCours};
+    private String stat;
     
-    public Mission(String[] mission){
-        
+    public Mission(String[] mission) throws ParseException{
+        this.nom=mission[0];
+        this.descriptif=mission[1];
+        this.dateDeb=new SimpleDateFormat("dd/MM/yyyy").parse(mission[2]);
+        this.duree=Integer.parseInt(mission[3]);
+        this.stat=mission[4];
+    }
+    
+    public void addPersonnel(Personnel p){
+        if(!this.equipe.contains(p))
+            this.equipe.add(p);
+    }
+    
+    @Override
+    public String toString(){
+        return this.nom+";"+this.descriptif+";"+this.dateDeb+";"+this.duree+";"+this.stat;
     }
 }

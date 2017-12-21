@@ -6,6 +6,7 @@
 package projet;
 
 import Interface.frmStart;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class Projet {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
         
         int j=0;
@@ -41,6 +42,12 @@ public class Projet {
         Entreprise ent=new Entreprise();
         ent.addCompetence(listeComp);
         System.out.println(ent.toString());
+        
+        ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
+        ent.addMission(listeMission);
+        System.out.println(ent.toString());
+        cs.sauvegarde(listeMission);
+        
         
     }
     
