@@ -14,4 +14,14 @@ public class Competence {
     private String descriptionEng;
     private String descriptionFr;
     
+    public Competence(String[] comp){
+        this.identifiant=comp[0];
+        this.descriptionEng=comp[1];
+        this.descriptionFr=comp[2];
+    }
+    
+    @Override
+    public String toString(){
+        return this.identifiant+" : "+this.descriptionEng+" >> Traduction : "+this.descriptionFr;
+    }
 }

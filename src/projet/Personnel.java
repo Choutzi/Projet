@@ -17,5 +17,9 @@ public class Personnel {
     private String prenom;
     private Date entree;
     private int identifiant;
-    private ArrayList<Competence> competences;
+    private ArrayList<Competence> competences=new ArrayList<Competence>();
+    
+    public Personnel(String[] personnel){
+        
+    }
 }

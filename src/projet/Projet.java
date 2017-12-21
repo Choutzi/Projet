@@ -19,8 +19,10 @@ public class Projet {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         int j=0;
         CSVmanager cs=new CSVmanager();
+        /*
         ArrayList<String[]> listeParametres=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
         for(int i=0; i<listeParametres.size();i++){
             while(j<listeParametres.get(i).length){
@@ -30,12 +32,16 @@ public class Projet {
             j=0;
             System.out.println();
         }
-
         cs.sauvegarde(listeParametres);
         System.out.println("Hello word");
         
         frmStart frm = new frmStart();
-        frm.setVisible(true);
+        frm.setVisible(true); */
+        ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
+        Entreprise ent=new Entreprise();
+        ent.addCompetence(listeComp);
+        System.out.println(ent.toString());
+        
     }
     
 }

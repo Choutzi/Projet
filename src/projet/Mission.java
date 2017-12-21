@@ -20,4 +20,8 @@ public class Mission {
     private int duree;
     private ArrayList<Personnel> equipe;
     private enum statut{Preparation, Planifiee, EnCours};
+    
+    public Mission(String[] mission){
+        
+    }
 }
