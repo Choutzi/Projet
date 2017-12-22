@@ -44,8 +44,20 @@ public class Entreprise {
        return null;
    }
    
+   public Personnel existPersonnel(String s){
+       for(Personnel per : this.ListePersonnel){
+           if(per.existPersonnel(s))
+               return per;
+       }
+       return null;
+   }
+   
    public ArrayList<Personnel> getPersonnel(){
        return this.ListePersonnel;
+   }
+   
+   public ArrayList<Mission> getMission(){
+       return this.ListeMission;
    }
     
     @Override
