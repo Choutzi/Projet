@@ -5,12 +5,11 @@
  */
 package projet;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  *
@@ -30,9 +29,21 @@ public class Personnel {
         this.identifiant=Integer.parseInt(personnel[3]);
     }
     
-    public void addCompetence(String s, Entreprise e){
+    public void addCompetence(ArrayList<String[]> comp, Entreprise e){
         
-        if(e.existCompetence(s)!=null)
-            this.competences.add(e.existCompetence(s));
+        for(String[] id : comp){
+            if(this.identifiant==Integer.parseInt(id[0])){
+                for(String cp : id){
+                    if(e.existCompetence(cp)!=null){
+                        this.competences.add(e.existCompetence(cp));
+                    }   
+                }
+            }
+        }
+    }
+    
+    @Override
+    public String toString(){
+        return this.nom+";"+this.prenom+";"+(new SimpleDateFormat("dd/MM/yyyy").format(this.entree))+";"+this.identifiant+";"+this.competences;
     }
 }
