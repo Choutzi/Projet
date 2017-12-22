@@ -57,6 +57,13 @@ public class Projet {
             System.out.println(per.toString());
         }
         
+        ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
+        for (Mission mis : ent.getMission()){
+            mis.addPersonnel(listePerMiss, ent);
+            System.out.println(mis.toString());
+        }
+        
+        
     }
     
 }

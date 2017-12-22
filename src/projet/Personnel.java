@@ -30,7 +30,6 @@ public class Personnel {
     }
     
     public void addCompetence(ArrayList<String[]> comp, Entreprise e){
-        
         for(String[] id : comp){
             if(this.identifiant==Integer.parseInt(id[0])){
                 for(String cp : id){
@@ -40,6 +39,12 @@ public class Personnel {
                 }
             }
         }
+    }
+    
+    public boolean existPersonnel(String s){
+        if (this.identifiant==Integer.parseInt(s))
+            return true;
+        return false;
     }
     
     @Override

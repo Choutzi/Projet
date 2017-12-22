@@ -25,6 +25,7 @@ public class Mission {
     private ArrayList<Personnel> equipe=new ArrayList<Personnel>();
     private enum statut{Preparation, Planifiee, EnCours};
     private String stat;
+    private int taille;
     
     public Mission(String[] mission) throws ParseException{
         this.nom=mission[0];
@@ -32,15 +33,25 @@ public class Mission {
         this.dateDeb=new SimpleDateFormat("dd/MM/yyyy").parse(mission[2]);
         this.duree=Integer.parseInt(mission[3]);
         this.stat=mission[4];
+        this.taille=Integer.parseInt(mission[5]);
     }
     
-    public void addPersonnel(Personnel p){
-        if(!this.equipe.contains(p))
-            this.equipe.add(p);
+    public void addPersonnel(ArrayList<String[]> liste, Entreprise ent){
+        if(this.taille>this.equipe.size()){
+            for (String[] Misseq : liste){
+                if(this.nom.equals(Misseq[0])){
+                    for(int i=1; i<Misseq.length;i++){
+                        if(ent.existPersonnel(Misseq[i])!=null)
+                            this.equipe.add(ent.existPersonnel(Misseq[i]));
+                    }
+                }
+            }
+        }else
+            System.out.println("Equipe au complet");
     }
     
     @Override
     public String toString(){
-        return this.nom+";"+this.descriptif+";"+(new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb))+";"+this.duree+";"+this.stat;
+        return this.nom+";"+this.descriptif+";"+(new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb))+";"+this.duree+";"+this.stat+";"+this.equipe;
     }
 }
