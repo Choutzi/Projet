@@ -46,8 +46,16 @@ public class Projet {
         ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
         ent.addMission(listeMission);
         System.out.println(ent.toString());
-        cs.sauvegarde(listeMission);
         
+        ArrayList<String[]> listePersonnel=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
+        ent.addPersonnel(listePersonnel);
+        
+        ArrayList<String[]> listeCompPer=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
+        // ajouter les compétences a chaque personnel !!
+        for (Personnel per : ent.getPersonnel()){
+            per.addCompetence(listeCompPer, ent);
+            System.out.println(per.toString());
+        }
         
     }
     

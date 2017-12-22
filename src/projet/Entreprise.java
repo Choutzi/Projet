@@ -38,10 +38,14 @@ public class Entreprise {
    
    public Competence existCompetence(String s){
        for(Competence comp : this.ListeCompetence){
-           if(comp.getIdentifiant()==s)
+           if(comp.getIdentifiant().equals(s))
                return comp;
        }
        return null;
+   }
+   
+   public ArrayList<Personnel> getPersonnel(){
+       return this.ListePersonnel;
    }
     
     @Override
