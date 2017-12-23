@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public class Entreprise {
     
-    private ArrayList<Personnel> ListePersonnel=new ArrayList<Personnel>();
-    private ArrayList<Mission> ListeMission=new ArrayList<Mission>();
-    private ArrayList<Competence> ListeCompetence=new ArrayList<Competence>();
+    private static ArrayList<Personnel> ListePersonnel=new ArrayList<Personnel>();
+    private static ArrayList<Mission> ListeMission=new ArrayList<Mission>();
+    private static ArrayList<Competence> ListeCompetence=new ArrayList<Competence>();
     
    public void addCompetence(ArrayList<String[]> comp){
        for(int i=0; i<comp.size();i++){
