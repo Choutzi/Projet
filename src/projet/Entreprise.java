@@ -59,6 +59,28 @@ public class Entreprise {
    public ArrayList<Mission> getMission(){
        return this.ListeMission;
    }
+   
+   public ArrayList<Competence> getCompetence(){
+       return this.ListeCompetence;
+   }
+   
+   public void initEntrprise() throws ParseException{
+       CSVmanager cs=new CSVmanager();
+       ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
+       ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
+       ArrayList<String[]> listePersonnel=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
+       ArrayList<String[]> listeCompPer=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
+       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
+       addPersonnel(listePersonnel);
+       addMission(listeMission);
+       addCompetence(listeComp);
+       for (Personnel per : this.ListePersonnel){
+            per.addCompetence(listeCompPer, this);
+        }
+       for (Mission mis : this.ListeMission){
+            mis.addPersonnel(listePerMiss, this);
+        }
+   }
     
     @Override
     public String toString(){

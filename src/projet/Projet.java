@@ -5,7 +5,6 @@
  */
 package projet;
 
-import Interface.frmStart;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -37,7 +36,7 @@ public class Projet {
         System.out.println("Hello word");
         
         frmStart frm = new frmStart();
-        frm.setVisible(true); */
+        frm.setVisible(true); 
         ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
         Entreprise ent=new Entreprise();
         ent.addCompetence(listeComp);
@@ -61,7 +60,10 @@ public class Projet {
         for (Mission mis : ent.getMission()){
             mis.addPersonnel(listePerMiss, ent);
             System.out.println(mis.toString());
-        }
+        }*/
+        Entreprise e=new Entreprise();
+        e.initEntrprise();
+        System.out.println(e.toString());
         
         
     }
