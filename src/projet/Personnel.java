@@ -25,7 +25,7 @@ public class Personnel {
     public Personnel(String[] personnel) throws ParseException{
         this.nom=personnel[0];
         this.prenom=personnel[1];
-        this.entree=new SimpleDateFormat("dd/MM/yyyy").parse(personnel[2]);;
+        this.entree=new SimpleDateFormat("dd/MM/yyyy").parse(personnel[2]);
         this.identifiant=Integer.parseInt(personnel[3]);
     }
     
