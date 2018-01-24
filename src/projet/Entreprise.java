@@ -20,24 +20,24 @@ public class Entreprise {
     
    public void addCompetence(ArrayList<String[]> comp){
        for(int i=0; i<comp.size();i++){
-           this.ListeCompetence.add(new Competence(comp.get(i)));
+           Entreprise.ListeCompetence.add(new Competence(comp.get(i)));
        }
     }
    
    public void addMission(ArrayList<String[]> mission) throws ParseException{
        for(int i=0; i<(mission.size());i++){
-           this.ListeMission.add(new Mission(mission.get(i)));
+           Entreprise.ListeMission.add(new Mission(mission.get(i)));
        }
     }
    
    public void addPersonnel(ArrayList<String[]> personnel) throws ParseException{
        for(int i=0; i<personnel.size();i++){
-           this.ListePersonnel.add(new Personnel(personnel.get(i)));
+           Entreprise.ListePersonnel.add(new Personnel(personnel.get(i)));
        }
     }
    
    public Competence existCompetence(String s){
-       for(Competence comp : this.ListeCompetence){
+       for(Competence comp : Entreprise.ListeCompetence){
            if(comp.getIdentifiant().equals(s))
                return comp;
        }
@@ -45,7 +45,7 @@ public class Entreprise {
    }
    
    public Personnel existPersonnel(String s){
-       for(Personnel per : this.ListePersonnel){
+       for(Personnel per : Entreprise.ListePersonnel){
            if(per.existPersonnel(s))
                return per;
        }
@@ -53,15 +53,15 @@ public class Entreprise {
    }
    
    public ArrayList<Personnel> getPersonnel(){
-       return this.ListePersonnel;
+       return Entreprise.ListePersonnel;
    }
    
    public ArrayList<Mission> getMission(){
-       return this.ListeMission;
+       return Entreprise.ListeMission;
    }
    
    public ArrayList<Competence> getCompetence(){
-       return this.ListeCompetence;
+       return Entreprise.ListeCompetence;
    }
    
    public void initEntrprise() throws ParseException{
@@ -74,14 +74,14 @@ public class Entreprise {
        addPersonnel(listePersonnel);
        addMission(listeMission);
        addCompetence(listeComp);
-       for (Personnel per : this.ListePersonnel){
+       for (Personnel per : Entreprise.ListePersonnel){
             per.addCompetence(listeCompPer, this);
         }
-       for (Mission mis : this.ListeMission){
+       for (Mission mis : Entreprise.ListeMission){
             mis.addPersonnel(listePerMiss, this);
         }
    }
-    
+              
     @Override
     public String toString(){
         String ec="";
@@ -89,8 +89,8 @@ public class Entreprise {
             ec=ec+this.ListeCompetence.get(i).toString()+"\n";
         }
         return ec;*/
-        for(int i=0; i<this.ListeMission.size();i++){
-            ec=ec+this.ListeMission.get(i).toString()+"\n";
+        for(int i=0; i<Entreprise.ListeMission.size();i++){
+            ec=ec+Entreprise.ListeMission.get(i).toString()+"\n";
         }
         return ec;
     }    

@@ -42,9 +42,7 @@ public class Personnel {
     }
     
     public boolean existPersonnel(String s){
-        if (this.identifiant==Integer.parseInt(s))
-            return true;
-        return false;
+        return this.identifiant==Integer.parseInt(s);
     }
     
     @Override

@@ -63,7 +63,7 @@ public class CSVmanager {
         StringBuilder builder = new StringBuilder();
         for(int j=0; j<o.size();j++){
             for(int i=0; i<o.get(j).length;i++){
-                builder.append(o.get(j)[i]+";");
+                builder.append(o.get(j)[i]).append(";");
             }
             builder.append("\n");
         }
