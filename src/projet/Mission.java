@@ -34,6 +34,8 @@ public class Mission {
         this.taille=Integer.parseInt(mission[5]);
     }
     
+    public int getTaille(){return this.taille;}
+    
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent){
         if(this.taille>this.equipe.size()){
             for (String[] Misseq : liste){
