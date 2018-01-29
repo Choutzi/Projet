@@ -17,8 +17,10 @@ import java.util.ArrayList;
  *
  * @author Choutzi
  */
-public class CSVmanager {
+public class CSVmanager implements Manager{
     
+    
+    @Override
     public ArrayList<String[]> lecture(String Dir) {
 
         ArrayList<String[]> ListeParametres=new ArrayList<String[]>();
@@ -53,6 +55,7 @@ public class CSVmanager {
         return ListeParametres;
     }
     
+    @Override
     public void sauvegarde(ArrayList<String[]> o){
         PrintWriter pw = null;
         try {

@@ -65,7 +65,7 @@ public class Entreprise {
    }
    
    public void initEntrprise() throws ParseException{
-       CSVmanager cs=new CSVmanager();
+       Manager cs=new CSVmanager();
        ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
        ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
        ArrayList<String[]> listePersonnel=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
