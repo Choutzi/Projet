@@ -36,11 +36,17 @@ public class Personnel {
         this.identifiant = Integer.parseInt(personnel[3]);
     }
 
+    //Iitialisation des compétences de chaque personne
     public void addCompetence(ArrayList<String[]> comp, Entreprise e) {
+        //on parcours la liste des compétences de chaque personne provenant du Fichier base de données pour chaque personne
         for (String[] id : comp) {
+            //si l'indentifiant de la personne à l'identifiant de la ligne
             if (this.identifiant == Integer.parseInt(id[0])) {
+                //pour chaque compétences compétence dans cette ligne
                 for (String cp : id) {
+                    //si la compétence existe dans la liste des compétences de l'entreprise
                     if (e.existCompetence(cp) != null) {
+                        //on récupère l'objet compétence grace à l'ID contenu dans la ligne
                         this.competences.add(e.existCompetence(cp));
                     }
                 }
@@ -51,10 +57,10 @@ public class Personnel {
     public boolean existPersonnel(String s) {
         return this.identifiant == Integer.parseInt(s);
     }
-
+    
     @Override
     public String toString() {
-        return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant + ";" + this.competences;
+        return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant ;
     }
 
     public void poserConge (Conge unConge) throws poserCongeException {
