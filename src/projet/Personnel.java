@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import projet.exceptions.poserCongeException;
 
 /**
  *
@@ -56,8 +57,25 @@ public class Personnel {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant + ";" + this.competences;
     }
 
-    public void poserConge(Conge unConge) {
-        this.conges.add(unConge);
+    public void poserConge (Conge unConge) throws poserCongeException {
+        for(Conge co : this.conges){
+            //date début congé
+            Date ddc = co.getDateDeb();
+            //date fin congé
+            Date dfc = co.getFin();
+            //date début congé posé
+            Date dduc = unConge.getDateDeb();
+            //date fin congé posé
+            Date dfuc = unConge.getFin();
+
+            //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
+            if ((ddc.before(dduc) && dfc.before(dfuc)) || (ddc.after(dduc) && dfc.after(dfuc))) {
+                this.conges.add(unConge);
+            }else{
+                throw new poserCongeException();
+            }
+        }
+        
     }
     
     public void ajouterMission(Mission uneMission){

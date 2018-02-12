@@ -10,13 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import projet.exceptions.affecterPersException;
 
 /**
  *
  * @author Choutzi
  */
 public class Mission {
-    
+
     private String nom;
     private String descriptif;
     private Date dateDeb;
@@ -28,7 +29,7 @@ public class Mission {
     };
     private String stat;
     private int taille;
-    
+
     public Mission(String[] mission) throws ParseException {
         this.nom = mission[0];
         this.descriptif = mission[1];
@@ -37,7 +38,7 @@ public class Mission {
         this.stat = mission[4];
         this.taille = Integer.parseInt(mission[5]);
     }
-    
+
     public int getTaille() {
         return this.taille;
     }
@@ -58,20 +59,20 @@ public class Mission {
             System.out.println("Equipe au complet");
         }
     }
-    
+
     @Override
     public String toString() {
         return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat + ";" + this.equipe;
     }
-    
+
     public Date getFin() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.dateDeb);
         cal.add(Calendar.DATE, this.duree);
         return cal.getTime();
     }
-    
-    public void affecterPers(Personnel unePersonne) {
+
+    public void affecterPers(Personnel unePersonne) throws affecterPersException {
         //si pour chaque congé de la personne
         for (Conge unConge : unePersonne.getConges()) {
             //date début congé
@@ -87,8 +88,8 @@ public class Mission {
             if ((ddc.before(ddm) && dfc.before(ddm)) || (ddc.after(dfm) && dfc.after(dfm))) {
                 this.equipe.add(unePersonne);
                 unePersonne.ajouterMission(this);
-            }else{
-                //throw new CongeException();
+            } else {
+                throw new affecterPersException();
             }
         }
     }
