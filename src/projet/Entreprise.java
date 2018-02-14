@@ -66,17 +66,24 @@ public class Entreprise {
    
    public void initEntrprise() throws ParseException{
        Manager cs=new CSVmanager();
+       //liste des compétences connues dans l'entreprise
        ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
+       //liste des missions connues dans l'entreprise
        ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
+       //liste des personnes connues dans l'entreprise
        ArrayList<String[]> listePersonnel=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
+       //liste des ID compétence par ID personne
        ArrayList<String[]> listeCompPer=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
-       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
+       //liste des ID personne par ID Mission
+       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));      
        addPersonnel(listePersonnel);
        addMission(listeMission);
        addCompetence(listeComp);
+       //pour chaque personne dans l'entreprise on appel la méthode d'ajout de compétences
        for (Personnel per : Entreprise.ListePersonnel){
             per.addCompetence(listeCompPer, this);
         }
+       //pour chaque mission dans l'entreprise on appel la méthode d'ajout de personnel
        for (Mission mis : Entreprise.ListeMission){
             mis.addPersonnel(listePerMiss, this);
         }

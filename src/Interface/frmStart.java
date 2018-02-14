@@ -6,6 +6,7 @@
 package Interface;
 
 import java.text.ParseException;
+import java.util.Date;
 import projet.Entreprise;
 import projet.Mission;
 import projet.Personnel;
@@ -60,6 +61,11 @@ public class frmStart extends javax.swing.JFrame {
         setTitle("Gestion Entrerpise");
 
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Jour");
 
@@ -271,10 +277,20 @@ public class frmStart extends javax.swing.JFrame {
         jPanel4.setVisible(false);
     }//GEN-LAST:event_jMenu3MouseClicked
 
+<<<<<<< HEAD
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         frmAddMission frm = new frmAddMission();
         frm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+=======
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        Date day =new Date();
+        Date spinner=(Date)jSpinner1.getValue();
+        if(spinner.before(day)){
+            jSpinner1.setValue(day);
+        }
+    }//GEN-LAST:event_jSpinner1StateChanged
+>>>>>>> 68f3b3d6740c7c5ea861097d16b23a5df6d30836
 
     /**
      * @param args the command line arguments

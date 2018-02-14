@@ -69,7 +69,7 @@ public class Mission {
 
     @Override
     public String toString() {
-        return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat + ";" + this.equipe;
+        return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat;
     }
 
     public Date getFin() {
