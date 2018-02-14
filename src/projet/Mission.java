@@ -21,6 +21,13 @@ public class Mission {
     private String nom;
     private String descriptif;
     private Date dateDeb;
+
+    public Mission(String nom, String descriptif, Date dateDeb, int duree) {
+        this.nom = nom;
+        this.descriptif = descriptif;
+        this.dateDeb = dateDeb;
+        this.duree = duree;
+    }
     private int duree;
     private ArrayList<Personnel> equipe = new ArrayList<Personnel>();
 
