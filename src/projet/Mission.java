@@ -78,6 +78,7 @@ public class Mission {
         cal.add(Calendar.DATE, this.duree);
         return cal.getTime();
     }
+    
 
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
         //si pour chaque congé de la personne
