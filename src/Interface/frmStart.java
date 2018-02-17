@@ -41,13 +41,13 @@ public class frmStart extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
+        jButtonAjoutMission = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -69,12 +69,21 @@ public class frmStart extends javax.swing.JFrame {
 
         jLabel1.setText("Jour");
 
+        jButtonAjoutMission.setText("Ajouter Mission");
+        jButtonAjoutMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjoutMissionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 627, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButtonAjoutMission)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 512, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -83,7 +92,8 @@ public class frmStart extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel1))
+                .addComponent(jLabel1)
+                .addComponent(jButtonAjoutMission))
         );
 
         jPanel1.setVisible(false);
@@ -128,30 +138,17 @@ public class frmStart extends javax.swing.JFrame {
         jTable2.setModel(model2);
         jScrollPane2.setViewportView(jTable2);
 
-        jButton2.setText("Ajouter mission");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(130, 130, 130))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(20, 20, 20))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jPanel3.setVisible(false);
@@ -278,11 +275,6 @@ public class frmStart extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MouseClicked
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        frmAddMission frm = new frmAddMission();
-        frm.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         Date day =new Date();
         Date spinner=(Date)jSpinner1.getValue();
@@ -290,6 +282,10 @@ public class frmStart extends javax.swing.JFrame {
             jSpinner1.setValue(day);
         }
     }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void jButtonAjoutMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutMissionActionPerformed
+        new frmAddMission().setVisible(true);
+    }//GEN-LAST:event_jButtonAjoutMissionActionPerformed
 
 
     /**
@@ -330,7 +326,7 @@ public class frmStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAjoutMission;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
