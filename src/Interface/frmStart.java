@@ -22,7 +22,7 @@ public class frmStart extends javax.swing.JFrame {
     /**
      * Creates new form frmStart
      */
-    private static Entreprise e = new Entreprise();
+    public static Entreprise e = new Entreprise();
 
     public frmStart() {
         initComponents();
@@ -287,7 +287,7 @@ public class frmStart extends javax.swing.JFrame {
         new frmAddMission().setVisible(true);
     }//GEN-LAST:event_jButtonAjoutMissionActionPerformed
 
-
+    
     /**
      * @param args the command line arguments
      */

@@ -21,21 +21,26 @@ public class Mission {
     private String nom;
     private String descriptif;
     private Date dateDeb;
-
-    public Mission(String nom, String descriptif, Date dateDeb, int duree) {
-        this.nom = nom;
-        this.descriptif = descriptif;
-        this.dateDeb = dateDeb;
-        this.duree = duree;
-    }
     private int duree;
     private ArrayList<Personnel> equipe = new ArrayList<Personnel>();
-
+    private ArrayList<Competence> competences = new ArrayList<>();
     private enum statut {
         Preparation, Planifiee, EnCours
     };
     private String stat;
     private int taille;
+
+    public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c) {
+        this.nom = nom;
+        this.descriptif = descriptif;
+        this.dateDeb = dateDeb;
+        this.duree = duree;
+        this.taille = c.size();
+        for(String[] ligne : c){
+            this.competences.add(new Competence(ligne));
+        }
+        this.stat="Preparation";
+    }
 
     public Mission(String[] mission) throws ParseException {
         this.nom = mission[0];
@@ -49,6 +54,8 @@ public class Mission {
     public int getTaille() {
         return this.taille;
     }
+    
+    public ArrayList<Competence> getCompetences(){return this.competences;} 
 
     // Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
@@ -65,6 +72,11 @@ public class Mission {
         } else {
             System.out.println("Equipe au complet");
         }
+    }
+    
+    public void ajoutCompetence(Competence c){
+        if (!this.competences.contains(c))
+            this.competences.add(c);
     }
 
     @Override
