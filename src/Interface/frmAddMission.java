@@ -210,10 +210,6 @@ public class frmAddMission extends javax.swing.JFrame {
         //chaque ligne est coupée en colonnes que l'on met dans l'arraylist
         for(int i =0;i<contlist.length;i++){
             comp= contlist[i].split(";");
-            for (int j=0;j<comp.length;j++){
-                comp[j]=comp[j].replaceAll("[*|]","");
-                System.out.println(comp[j]);
-            }
             contenuList.add(comp);
         }
         JOptionPane jop = new JOptionPane();
@@ -227,8 +223,7 @@ public class frmAddMission extends javax.swing.JFrame {
             jop.showMessageDialog(null, "Veuillez choisir les compétences requises pour la mission", "Attention", JOptionPane.WARNING_MESSAGE);
         }else{
             //on ajoute la mission à la liste des missions de l'entreprise et on met à jour le tableau de mission dans frmStart
-            frmStart.e.getMission().add(new Mission(TFIntitule.getText(),TAdesc.getText(),(Date)jSpinnerdatedeb.getValue(),(int)jSpinner1.getValue(),contenuList));
-            System.out.println((frmStart.e.getMission().get(frmStart.e.getMission().size()-1).getCompetences().get(0).toString()).replaceAll("[|]", ""));
+            frmStart.e.getMission().add(new Mission(TFIntitule.getText(),TAdesc.getText(),(Date)jSpinnerdatedeb.getValue(),(int)jSpinner1.getValue(),contenuList, frmStart.e));
             frmStart.f.majMission();
             dispose();
         }

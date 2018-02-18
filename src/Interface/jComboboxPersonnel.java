@@ -27,14 +27,8 @@ public class jComboboxPersonnel extends JComboBox {
         for (Personnel p : frmStart.e.getPersonnel()) {
             if (p.avoirComp(c)) {
                 this.addItem(p);
-                System.out.println("added");
             }
         }
     }
 
-    public void afficher() {
-        for (int i = 0; i < this.getItemCount() - 1; i++) {
-            System.out.println(this.getItemAt(i).toString() + "fin");
-        }
-    }
 }

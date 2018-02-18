@@ -53,7 +53,6 @@ public class frmEquipeMission extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new jComboboxPersonnel(c)));
             System.out.println(c.getIdentifiant());
         }
-        
     }
     
     @SuppressWarnings("unchecked")

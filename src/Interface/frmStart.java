@@ -313,8 +313,9 @@ public class frmStart extends javax.swing.JFrame {
         //on récupère l'index de la sélection et on vérifie si l'utilisateur a bien sélectionné une compétence
         int i=jTable2.getSelectedRow();
         if (i!=-1){
-            //on met a jour le model en supprimant la compétence sélectionnée
-            ((DefaultTableModel)jTable2.getModel()).removeRow(i);
+            //on met a jour la liste des mission en supprimant la mission sélectionnée
+            e.getMission().remove(i);
+            majMission();
         }else{
             //message warning si aucune sélection
             JOptionPane jop = new JOptionPane();
@@ -417,7 +418,6 @@ public class frmStart extends javax.swing.JFrame {
                 f.setVisible(true);
             }
         });
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
