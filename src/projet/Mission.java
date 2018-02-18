@@ -30,14 +30,16 @@ public class Mission {
     private String stat;
     private int taille;
 
-    public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c) {
+    public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) {
         this.nom = nom;
         this.descriptif = descriptif;
         this.dateDeb = dateDeb;
         this.duree = duree;
         this.taille = c.size();
         for(String[] ligne : c){
-            this.competences.add(new Competence(ligne));
+            if(e.existCompetence(ligne[0].substring(1))!=null){
+                this.competences.add(e.existCompetence(ligne[0].substring(1)));
+            }
         }
         this.stat="Preparation";
     }

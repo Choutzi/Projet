@@ -24,11 +24,11 @@ public class Personnel {
     private ArrayList<Competence> competences = new ArrayList<Competence>();
     private ArrayList<Conge> conges = new ArrayList<Conge>();
     private ArrayList<Mission> missions = new ArrayList<Mission>();
-    
+
     public ArrayList<Conge> getConges() {
         return conges;
     }
-    
+
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];
@@ -57,14 +57,24 @@ public class Personnel {
     public boolean existPersonnel(String s) {
         return this.identifiant == Integer.parseInt(s);
     }
-    
+
     @Override
     public String toString() {
-        return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant ;
+        return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
 
-    public void poserConge (Conge unConge) throws poserCongeException {
-        for(Conge co : this.conges){
+    public boolean avoirComp(Competence c) {
+        for (Competence comp : this.competences) {
+            if (comp.getIdentifiant().equals(c.getIdentifiant())) {
+                System.out.println("true");
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void poserConge(Conge unConge) throws poserCongeException {
+        for (Conge co : this.conges) {
             //date début congé
             Date ddc = co.getDateDeb();
             //date fin congé
@@ -77,14 +87,14 @@ public class Personnel {
             //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
             if ((ddc.before(dduc) && dfc.before(dfuc)) || (ddc.after(dduc) && dfc.after(dfuc))) {
                 this.conges.add(unConge);
-            }else{
+            } else {
                 throw new poserCongeException();
             }
         }
-        
+
     }
-    
-    public void ajouterMission(Mission uneMission){
+
+    public void ajouterMission(Mission uneMission) {
         this.missions.add(uneMission);
     }
 }
