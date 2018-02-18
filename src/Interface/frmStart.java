@@ -7,6 +7,8 @@ package Interface;
 
 import java.text.ParseException;
 import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import projet.Entreprise;
 import projet.Mission;
 import projet.Personnel;
@@ -22,11 +24,13 @@ public class frmStart extends javax.swing.JFrame {
     /**
      * Creates new form frmStart
      */
-    public static Entreprise e = new Entreprise();
+    protected static Entreprise e = new Entreprise();
+    protected static frmStart f;
 
     public frmStart() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.majMission();
     }
 
     /**
@@ -38,16 +42,18 @@ public class frmStart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jButtonAjoutMission = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -59,6 +65,31 @@ public class frmStart extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Entrerpise");
+
+        jPanel2.setVisible(false);
+
+        DefaultTableModel model2 = new DefaultTableModel();
+        model2.addColumn("Titre");
+        model2.addColumn("Description");
+        model2.addColumn("Date début");
+        model2.addColumn("Durée");
+        model2.addColumn("Statut");
+        model2.addColumn("Nombre personnel");
+        jTable2.setModel(model2);
+        jScrollPane2.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
 
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -76,6 +107,20 @@ public class frmStart extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Supprimer Mission");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Gestion de l'équipe Mission");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -83,8 +128,12 @@ public class frmStart extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonAjoutMission)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 512, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -93,7 +142,9 @@ public class frmStart extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel1)
-                .addComponent(jButtonAjoutMission))
+                .addComponent(jButtonAjoutMission)
+                .addComponent(jButton1)
+                .addComponent(jButton2))
         );
 
         jPanel1.setVisible(false);
@@ -114,41 +165,11 @@ public class frmStart extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-        );
-
-        jPanel2.setVisible(false);
-
-        DefaultTableModel model2 = new DefaultTableModel();
-        model2.addColumn("Titre");
-        model2.addColumn("Description");
-        model2.addColumn("Date début");
-        model2.addColumn("Durée");
-        model2.addColumn("Statut");
-        model2.addColumn("Nombre personnel");
-        for (Mission m : e.getMission()) {
-            String[] line = m.toString().split(";");
-            model2.addRow(line);
-            model2.setValueAt(m.getTaille(), model2.getRowCount()-1, 5);
-        }
-        jTable2.setModel(model2);
-        jScrollPane2.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jPanel3.setVisible(false);
@@ -168,7 +189,7 @@ public class frmStart extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +200,7 @@ public class frmStart extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
+            .addGap(0, 880, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,8 +239,9 @@ public class frmStart extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +298,9 @@ public class frmStart extends javax.swing.JFrame {
 
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        Date day =new Date();
-        Date spinner=(Date)jSpinner1.getValue();
-        if(spinner.before(day)){
+        Date day = new Date();
+        Date spinner = (Date) jSpinner1.getValue();
+        if (spinner.before(day)) {
             jSpinner1.setValue(day);
         }
     }//GEN-LAST:event_jSpinner1StateChanged
@@ -287,7 +309,79 @@ public class frmStart extends javax.swing.JFrame {
         new frmAddMission().setVisible(true);
     }//GEN-LAST:event_jButtonAjoutMissionActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //on récupère l'index de la sélection et on vérifie si l'utilisateur a bien sélectionné une compétence
+        int i=jTable2.getSelectedRow();
+        if (i!=-1){
+            //on met a jour le model en supprimant la compétence sélectionnée
+            ((DefaultTableModel)jTable2.getModel()).removeRow(i);
+        }else{
+            //message warning si aucune sélection
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Veuillez sélectionner une mission à supprimer", "Attention", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int i=jTable2.getSelectedRow();
+        if (i!=-1){
+            //on lance la gestion d'équipe si l'utilisateur a bien sélectionné une mission dans la liste
+            new frmEquipeMission(i).setVisible(true);
+        }else{
+            //message warning si aucune sélection
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Veuillez sélectionner une mission pour gérer son équipe", "Attention", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public frmStart getFrm() {
+        return f;
+    }
+
+    //mise à jour de la table mission : on vide la table puis on relit la liste des mission de l'entreprise
+    public void majMission() {
+        if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
+            for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
+                ((DefaultTableModel) jTable2.getModel()).removeRow(i);
+            }
+        }
+        for (Mission m : e.getMission()) {
+            String[] line = m.toString().split(";");
+            ((DefaultTableModel) jTable2.getModel()).addRow(line);
+            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
+        }
+    }
     
+    //mise à jour de la table personnel : on vide la table puis on relit la liste du personnel de l'entreprise a fini !!
+    public void majPersonnel() {
+        if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
+            for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
+                ((DefaultTableModel) jTable2.getModel()).removeRow(i);
+            }
+        }
+        for (Mission m : e.getMission()) {
+            String[] line = m.toString().split(";");
+            ((DefaultTableModel) jTable2.getModel()).addRow(line);
+            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
+        }
+    }
+    
+    //mise à jour de la table compétence : on vide la table puis on relit la liste des compétences de l'entreprise à finir !!
+    public void majCompetence() {
+        if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
+            for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
+                ((DefaultTableModel) jTable2.getModel()).removeRow(i);
+            }
+        }
+        for (Mission m : e.getMission()) {
+            String[] line = m.toString().split(";");
+            ((DefaultTableModel) jTable2.getModel()).addRow(line);
+            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -319,13 +413,16 @@ public class frmStart extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStart().setVisible(true);
+                f = new frmStart();
+                f.setVisible(true);
             }
         });
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAjoutMission;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;

@@ -202,11 +202,18 @@ public class frmAddMission extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //création de l'arraylist contenant chaque ligne du tableau
         ArrayList<String[]> contenuList=new ArrayList<>();
+        //on récupère chaque ligne de la jList des copétences requises
         String [] contlist = jList1.getModel().toString().split(",");
         String [] comp;
+        //chaque ligne est coupée en colonnes que l'on met dans l'arraylist
         for(int i =0;i<contlist.length;i++){
             comp= contlist[i].split(";");
+            for (int j=0;j<comp.length;j++){
+                comp[j]=comp[j].replaceAll("[*|]","");
+                System.out.println(comp[j]);
+            }
             contenuList.add(comp);
         }
         JOptionPane jop = new JOptionPane();
@@ -217,9 +224,12 @@ public class frmAddMission extends javax.swing.JFrame {
         }else if(TAdesc.getText().isEmpty()){
             jop.showMessageDialog(null, "Veuillez entrer la description de la mission", "Attention", JOptionPane.WARNING_MESSAGE);
         }else if(contlist[0].equals("[]")){
-            jop.showMessageDialog(null, "Veuillez choisir les compétences requisent pour la mission", "Attention", JOptionPane.WARNING_MESSAGE);
+            jop.showMessageDialog(null, "Veuillez choisir les compétences requises pour la mission", "Attention", JOptionPane.WARNING_MESSAGE);
         }else{
+            //on ajoute la mission à la liste des missions de l'entreprise et on met à jour le tableau de mission dans frmStart
             frmStart.e.getMission().add(new Mission(TFIntitule.getText(),TAdesc.getText(),(Date)jSpinnerdatedeb.getValue(),(int)jSpinner1.getValue(),contenuList));
+            System.out.println((frmStart.e.getMission().get(frmStart.e.getMission().size()-1).getCompetences().get(0).toString()).replaceAll("[|]", ""));
+            frmStart.f.majMission();
             dispose();
         }
         
@@ -268,37 +278,7 @@ public class frmAddMission extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmAddMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmAddMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmAddMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmAddMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmAddMission().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TAdesc;
