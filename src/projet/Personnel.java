@@ -29,6 +29,10 @@ public class Personnel {
         return conges;
     }
 
+    public int getId(){
+        return this.identifiant;
+    }
+    
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];

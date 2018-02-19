@@ -52,6 +52,16 @@ public class Entreprise {
        return null;
    }
    
+   public Personnel getPersonnelById(String idPers){
+       
+       for(Personnel unPers : Entreprise.ListePersonnel){
+           if(idPers.equals(unPers.getId())){
+               return unPers;
+           }
+       }
+        return null;
+   }
+   
    public ArrayList<Personnel> getPersonnel(){
        return Entreprise.ListePersonnel;
    }

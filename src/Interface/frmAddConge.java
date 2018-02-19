@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import projet.Entreprise;
+import projet.Personnel;
+
 /**
  *
  * @author efgde
@@ -138,7 +141,10 @@ public class frmAddConge extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        //try catch pour exceptions
-        jComboBox1.getSelectedIndex()
+        String str = jComboBox1.getSelectedItem().toString();
+        char idPers = str.charAt(str.length() - 1);
+        //Personnel pers = frmStart.e.getPersonnelById(idPers.toString());;
+        System.out.println(str);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
