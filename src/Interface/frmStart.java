@@ -62,6 +62,7 @@ public class frmStart extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        Enregistrer = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Entrerpise");
@@ -231,6 +232,14 @@ public class frmStart extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu3);
 
+        Enregistrer.setText("Enregistrer");
+        Enregistrer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EnregistrerMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Enregistrer);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,6 +346,11 @@ public class frmStart extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void EnregistrerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnregistrerMouseClicked
+        e.sauvegarde();
+        JOptionPane.showMessageDialog(null, "Les modification ont bien été enregistrées", "Enregistrer", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_EnregistrerMouseClicked
+
     public frmStart getFrm() {
         return f;
     }
@@ -421,6 +435,7 @@ public class frmStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Enregistrer;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAjoutMission;

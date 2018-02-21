@@ -56,19 +56,12 @@ public class CSVmanager implements Manager{
     }
     
     @Override
-    public void sauvegarde(ArrayList<String[]> o){
+    public void ecrire(String dir, StringBuilder builder){
         PrintWriter pw = null;
         try {
-                pw = new PrintWriter(new File(System.getProperty("user.dir") + "\\listes\\new.csv"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        StringBuilder builder = new StringBuilder();
-        for(int j=0; j<o.size();j++){
-            for(int i=0; i<o.get(j).length;i++){
-                builder.append(o.get(j)[i]).append(";");
-            }
-            builder.append("\n");
+                pw = new PrintWriter(new File(System.getProperty("user.dir") + dir));
+        } catch (FileNotFoundException err) {
+            err.printStackTrace();
         }
         pw.write(builder.toString());
         pw.close();

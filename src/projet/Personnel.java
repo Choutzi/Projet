@@ -62,6 +62,8 @@ public class Personnel {
     public String toString() {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
+    
+    public int getId(){return this.identifiant;}
 
     public boolean avoirComp(Competence c) {
         for (Competence comp : this.competences) {
@@ -93,6 +95,8 @@ public class Personnel {
         }
 
     }
+    
+    public ArrayList<Competence> getCompetence(){return this.competences;}
 
     public void ajouterMission(Mission uneMission) {
         this.missions.add(uneMission);

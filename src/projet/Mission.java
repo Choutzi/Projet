@@ -22,7 +22,7 @@ public class Mission {
     private String descriptif;
     private Date dateDeb;
     private int duree;
-    private ArrayList<Personnel> equipe = new ArrayList<Personnel>();
+    private ArrayList<Personnel> equipe = new ArrayList<>();
     private ArrayList<Competence> competences = new ArrayList<>();
     private enum statut {
         Preparation, Planifiee, EnCours
@@ -50,14 +50,18 @@ public class Mission {
         this.dateDeb = new SimpleDateFormat("dd/MM/yyyy").parse(mission[2]);
         this.duree = Integer.parseInt(mission[3]);
         this.stat = mission[4];
-        this.taille = Integer.parseInt(mission[5]);
+        this.taille=0;
     }
 
     public int getTaille() {
         return this.taille;
     }
     
+    public String getNom(){return this.nom;}
+    
     public ArrayList<Competence> getCompetences(){return this.competences;} 
+    
+    public ArrayList<Personnel> getPersonnels(){return this.equipe;} 
 
     // Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
