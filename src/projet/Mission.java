@@ -98,6 +98,11 @@ public class Mission {
     }
     
 
+    /**
+     * Affecter une personne à une mission
+     * @param unePersonne Personne à affecter
+     * @throws affecterPersException Si la mission affectée déborde sur les congés du Personnel
+     */
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
         //si pour chaque congé de la personne
         for (Conge unConge : unePersonne.getConges()) {

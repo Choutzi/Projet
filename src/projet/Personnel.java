@@ -29,6 +29,10 @@ public class Personnel {
         return conges;
     }
 
+    public int getId(){
+        return this.identifiant;
+    }
+    
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];
@@ -63,7 +67,6 @@ public class Personnel {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
     
-    public int getId(){return this.identifiant;}
 
     public boolean avoirComp(Competence c) {
         for (Competence comp : this.competences) {
