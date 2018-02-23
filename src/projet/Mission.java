@@ -97,7 +97,7 @@ public class Mission {
         for(String[] ligne : c){
             if(this.nom.equals(ligne[0])){
                 for (int i=1; i<ligne.length;i++){
-                    if (this.competences.contains(e.existCompetence(ligne[i]))) {
+                    if (!this.competences.contains(e.existCompetence(ligne[i]))) {
                         this.competences.add(e.existCompetence(ligne[i]));
                     }
                 }

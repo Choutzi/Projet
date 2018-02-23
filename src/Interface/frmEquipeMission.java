@@ -51,7 +51,6 @@ public class frmEquipeMission extends javax.swing.JFrame {
             String [] comp = c.toString().split(";");
             model.addRow(comp);
             jTable1.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new jComboboxPersonnel(c)));
-            System.out.println(c.getIdentifiant());
         }
     }
     
@@ -120,10 +119,6 @@ public class frmEquipeMission extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
