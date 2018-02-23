@@ -5,6 +5,7 @@
  */
 package projet;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,5 +36,9 @@ public class Conge {
         cal.setTime(this.dateDeb);
         cal.add(Calendar.DATE, this.duree);
         return cal.getTime();
+    }
+    
+    public String toString(){
+        return (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb))+";"+this.duree;
     }
 }

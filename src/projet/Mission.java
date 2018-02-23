@@ -24,6 +24,7 @@ public class Mission {
     private int duree;
     private ArrayList<Personnel> equipe = new ArrayList<>();
     private ArrayList<Competence> competences = new ArrayList<>();
+
     private enum statut {
         Preparation, Planifiee, EnCours
     };
@@ -36,12 +37,12 @@ public class Mission {
         this.dateDeb = dateDeb;
         this.duree = duree;
         this.taille = c.size();
-        for(String[] ligne : c){
-            if(e.existCompetence(ligne[0].substring(1))!=null){
+        for (String[] ligne : c) {
+            if (e.existCompetence(ligne[0].substring(1)) != null) {
                 this.competences.add(e.existCompetence(ligne[0].substring(1)));
             }
         }
-        this.stat="Preparation";
+        this.stat = "Preparation";
     }
 
     public Mission(String[] mission) throws ParseException {
@@ -50,18 +51,24 @@ public class Mission {
         this.dateDeb = new SimpleDateFormat("dd/MM/yyyy").parse(mission[2]);
         this.duree = Integer.parseInt(mission[3]);
         this.stat = mission[4];
-        this.taille=0;
+        this.taille = 0;
     }
 
     public int getTaille() {
         return this.taille;
     }
-    
-    public String getNom(){return this.nom;}
-    
-    public ArrayList<Competence> getCompetences(){return this.competences;} 
-    
-    public ArrayList<Personnel> getPersonnels(){return this.equipe;} 
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return this.competences;
+    }
+
+    public ArrayList<Personnel> getPersonnels() {
+        return this.equipe;
+    }
 
     // Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
@@ -79,10 +86,23 @@ public class Mission {
             System.out.println("Equipe au complet");
         }
     }
-    
-    public void ajoutCompetence(Competence c){
-        if (!this.competences.contains(c))
+
+    public void ajoutCompetence(Competence c) {
+        if (!this.competences.contains(c)) {
             this.competences.add(c);
+        }
+    }
+
+    public void ajoutCompetence(ArrayList<String[]> c, Entreprise e) {
+        for(String[] ligne : c){
+            if(this.nom.equals(ligne[0])){
+                for (int i=1; i<ligne.length;i++){
+                    if (this.competences.contains(e.existCompetence(ligne[i]))) {
+                        this.competences.add(e.existCompetence(ligne[i]));
+                    }
+                }
+            }
+        } 
     }
 
     @Override
@@ -96,12 +116,13 @@ public class Mission {
         cal.add(Calendar.DATE, this.duree);
         return cal.getTime();
     }
-    
 
     /**
      * Affecter une personne à une mission
+     *
      * @param unePersonne Personne à affecter
-     * @throws affecterPersException Si la mission affectée déborde sur les congés du Personnel
+     * @throws affecterPersException Si la mission affectée déborde sur les
+     * congés du Personnel
      */
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
         //si pour chaque congé de la personne

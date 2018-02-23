@@ -89,31 +89,29 @@ public class Entreprise {
        //liste des ID compétence par ID personne
        ArrayList<String[]> listeCompPer=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
        //liste des ID personne par ID Mission
-       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));      
+       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
+       //liste des ID compétences par ID Mission
+       ArrayList<String[]> listeCompMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_mission.csv"));
+       //liste des congés par ID Personnel
+       ArrayList<String[]> listeConge=cs.lecture((System.getProperty("user.dir") + "\\listes\\conge_personnel.csv"));
        addPersonnel(listePersonnel);
        addMission(listeMission);
        addCompetence(listeComp);
        //pour chaque personne dans l'entreprise on appel la méthode d'ajout de compétences
        for (Personnel per : Entreprise.ListePersonnel){
             per.addCompetence(listeCompPer, this);
+            per.initConge(listeConge);
         }
         //pour chaque mission dans l'entreprise on appel la méthode d'ajout de personnel
         for (Mission mis : Entreprise.ListeMission) {
             mis.addPersonnel(listePerMiss, this);
+            mis.ajoutCompetence(listeCompMiss, this);
         }
     }
 
     @Override
     public String toString() {
-        String ec = "";
-        /*for(int i=0; i<this.ListeCompetence.size();i++){
-            ec=ec+this.ListeCompetence.get(i).toString()+"\n";
-        }
-        return ec;*/
-        for (int i = 0; i < Entreprise.ListeMission.size(); i++) {
-            ec = ec + Entreprise.ListeMission.get(i).toString() + "\n";
-        }
-        return ec;
+        return "yo";
     }
 
     /**
@@ -138,14 +136,14 @@ public class Entreprise {
             tmp = Integer.toString(per.getId());
             if (!per.getConges().isEmpty()) {
                 for (Conge c : per.getConges()) {
-                    tmp = tmp + ";" + c.getDateDeb() + ";" + c.getDuree();
+                    tmp = tmp + ";" + c.toString();
                 }
                 builder3.append(tmp + "\n");
             }
         }
         cs.ecrire("\\listes\\liste_personnel.csv", builder1);
         cs.ecrire("\\listes\\competences_personnel.csv", builder2);
-        cs.ecrire("\\listes\\conge_personnel.csv", builder2);
+        cs.ecrire("\\listes\\conge_personnel.csv", builder3);
 
         builder1 = new StringBuilder();
         builder2 = new StringBuilder();
