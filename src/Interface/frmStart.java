@@ -323,6 +323,19 @@ public class frmStart extends javax.swing.JFrame {
         if (spinner.before(day)) {
             jSpinner1.setValue(day);
         }
+        for (Mission m : e.getMission()){
+            if(m.getFin().before(spinner)){
+                m.setStat("Terminée");
+            }else if(m.getDatedeb().before(spinner)){
+                if(m.getPersonnels().size()==m.getTaille()){
+                    m.setStat("EnCours");
+                }else{
+                    System.out.println("Faire méthode de remplissage par défaut si équipe pas faite lors de la date de début");
+                    m.setStat("EnCours");
+                }
+            }
+        }
+        this.majMission();
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jButtonAjoutMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutMissionActionPerformed

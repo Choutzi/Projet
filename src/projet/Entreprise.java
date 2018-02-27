@@ -67,15 +67,20 @@ public class Entreprise {
         return Entreprise.ListeCompetence;
     }
    
+    /**
+     * méthode qui esixt déjà avec existPers en plus celle-ci ne marche pas
+     * @param idPers
+     * @return Personnel
+     
    public Personnel getPersonnelById(String idPers){
-       
        for(Personnel unPers : Entreprise.ListePersonnel){
            if(idPers.equals(unPers.getId())){
+               
                return unPers;
            }
        }
         return null;
-   }
+   }*/
 
    
    public void initEntrprise() throws ParseException{

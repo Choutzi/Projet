@@ -26,17 +26,15 @@ public class Mission {
     private ArrayList<Competence> competences = new ArrayList<>();
 
     private enum statut {
-        Preparation, Planifiee, EnCours
+        Preparation, Planifiee, EnCours, Terminee
     };
     private String stat;
-    private int taille;
 
     public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) {
         this.nom = nom;
         this.descriptif = descriptif;
         this.dateDeb = dateDeb;
         this.duree = duree;
-        this.taille = c.size();
         for (String[] ligne : c) {
             if (e.existCompetence(ligne[0].substring(1)) != null) {
                 this.competences.add(e.existCompetence(ligne[0].substring(1)));
@@ -51,11 +49,11 @@ public class Mission {
         this.dateDeb = new SimpleDateFormat("dd/MM/yyyy").parse(mission[2]);
         this.duree = Integer.parseInt(mission[3]);
         this.stat = mission[4];
-        this.taille = 0;
     }
 
     public int getTaille() {
-        return this.taille;
+        
+        return this.competences.size();
     }
 
     public String getNom() {
@@ -72,7 +70,7 @@ public class Mission {
 
     // Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
-        if (this.taille > this.equipe.size()) {
+        if (this.getTaille() > this.equipe.size()) {
             for (String[] Misseq : liste) {
                 if (this.nom.equals(Misseq[0])) {
                     for (int i = 1; i < Misseq.length; i++) {
@@ -92,17 +90,19 @@ public class Mission {
             this.competences.add(c);
         }
     }
+    
+    public Date getDatedeb(){return this.dateDeb;}
 
     public void ajoutCompetence(ArrayList<String[]> c, Entreprise e) {
-        for(String[] ligne : c){
-            if(this.nom.equals(ligne[0])){
-                for (int i=1; i<ligne.length;i++){
+        for (String[] ligne : c) {
+            if (this.nom.equals(ligne[0])) {
+                for (int i = 1; i < ligne.length; i++) {
                     if (!this.competences.contains(e.existCompetence(ligne[i]))) {
                         this.competences.add(e.existCompetence(ligne[i]));
                     }
                 }
             }
-        } 
+        }
     }
 
     @Override
@@ -125,24 +125,30 @@ public class Mission {
      * congés du Personnel
      */
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
-        //si pour chaque congé de la personne
-        for (Conge unConge : unePersonne.getConges()) {
-            //date début congé
-            Date ddc = unConge.getDateDeb();
-            //date fin congé
-            Date dfc = unConge.getFin();
-            //date début mission
-            Date ddm = this.dateDeb;
-            //date fin mission
-            Date dfm = this.getFin();
+            //si pour chaque congé de la personne
+           /* for (Conge unConge : unePersonne.getConges()) {
+                //date début congé
+                Date ddc = unConge.getDateDeb();
+                //date fin congé
+                Date dfc = unConge.getFin();
+                //date début mission
+                Date ddm = this.dateDeb;
+                //date fin mission
+                Date dfm = this.getFin();
 
-            //si la date de début et de fin du congé sont inférieurs à la date de début mission OU si la date de début congé et la date de fin congé sont supérieurs à la date de fin mission
-            if ((ddc.before(ddm) && dfc.before(ddm)) || (ddc.after(dfm) && dfc.after(dfm))) {
-                this.equipe.add(unePersonne);
-                unePersonne.ajouterMission(this);
-            } else {
-                throw new affecterPersException();
-            }
-        }
+                //si la date de début et de fin du congé sont inférieurs à la date de début mission OU si la date de début congé et la date de fin congé sont supérieurs à la date de fin mission
+                if ((ddc.before(ddm) && dfc.before(ddm)) || (ddc.after(dfm) && dfc.after(dfm))) {
+                    this.equipe.add(unePersonne);
+                    unePersonne.ajouterMission(this);
+                } else {
+                    throw new affecterPersException();
+                }
+            }*/
+
+            this.equipe.add(unePersonne);
+    }
+    
+    public void setStat(String stat){
+        this.stat=stat;
     }
 }
