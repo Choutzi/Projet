@@ -20,6 +20,11 @@ import java.util.ArrayList;
 public class CSVmanager implements Manager{
     
     
+    /**
+     * Méthode pour lire un fichier csv et return les données sous forme d'une ArrayList<String[]>
+     * @param Dir
+     * @return ArrayList<String[]>
+     */
     @Override
     public ArrayList<String[]> lecture(String Dir) {
 
@@ -32,7 +37,6 @@ public class CSVmanager implements Manager{
 
             br = new BufferedReader(new FileReader(Dir));
             while ((line = br.readLine()) != null) {
-
                 // ; comme séparateur
                 String[] parametre = line.split(csvSplitBy);
                 ListeParametres.add(parametre);
@@ -55,20 +59,18 @@ public class CSVmanager implements Manager{
         return ListeParametres;
     }
     
+    /**
+     * Méthode pour ecrire un csv à un emplacement précis
+     * @param dir emplacement où le csv doit être créé
+     * @param builder données à écrire dans le csv
+     */
     @Override
-    public void sauvegarde(ArrayList<String[]> o){
+    public void ecrire(String dir, StringBuilder builder){
         PrintWriter pw = null;
         try {
-                pw = new PrintWriter(new File(System.getProperty("user.dir") + "\\listes\\new.csv"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        StringBuilder builder = new StringBuilder();
-        for(int j=0; j<o.size();j++){
-            for(int i=0; i<o.get(j).length;i++){
-                builder.append(o.get(j)[i]).append(";");
-            }
-            builder.append("\n");
+                pw = new PrintWriter(new File(System.getProperty("user.dir") + dir));
+        } catch (FileNotFoundException err) {
+            err.printStackTrace();
         }
         pw.write(builder.toString());
         pw.close();

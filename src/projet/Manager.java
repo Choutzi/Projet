@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public interface Manager {
     public ArrayList<String[]> lecture(String Dir);
-    public void sauvegarde(ArrayList<String[]> o);
+    public void ecrire(String Dir, StringBuilder builder);
 }

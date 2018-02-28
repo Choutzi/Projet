@@ -29,6 +29,10 @@ public class Personnel {
         return conges;
     }
 
+    public int getId() {
+        return this.identifiant;
+    }
+
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];
@@ -66,13 +70,12 @@ public class Personnel {
     public boolean avoirComp(Competence c) {
         for (Competence comp : this.competences) {
             if (comp.getIdentifiant().equals(c.getIdentifiant())) {
-                System.out.println("true");
                 return true;
             }
         }
         return false;
     }
-    
+
     public void poserConge(Conge unConge) throws poserCongeException {
         for (Conge co : this.conges) {
             //date début congé
@@ -92,6 +95,22 @@ public class Personnel {
             }
         }
 
+    }
+
+    public void initConge(ArrayList<String[]> c) throws ParseException {
+        if (!c.isEmpty()) {
+            for (String[] ligne : c) {
+               if (this.identifiant == Integer.parseInt(ligne[0])) {
+                    for (int i = 1; i < ligne.length; i = i + 2) {
+                        this.conges.add(new Conge(new SimpleDateFormat("dd/MM/yyyy").parse(ligne[i]), Integer.parseInt(ligne[i + 1])));
+                    }
+                }
+            }
+        }
+    }
+
+    public ArrayList<Competence> getCompetence() {
+        return this.competences;
     }
 
     public void ajouterMission(Mission uneMission) {
