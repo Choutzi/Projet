@@ -5,8 +5,14 @@
  */
 package Interface;
 
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import projet.Conge;
 import projet.Entreprise;
 import projet.Personnel;
+import projet.exceptions.poserCongeException;
 
 /**
  *
@@ -134,19 +140,36 @@ public class frmAddConge extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MajComponents(){
+    private void MajComponents() {
         //maj de la combobox
-        for (int i=0; i<frmStart.e.getPersonnel().size();i++){
-                jComboBox1.addItem(frmStart.e.getPersonnel().get(i).toString());
+        for (int i = 0; i < frmStart.e.getPersonnel().size(); i++) {
+            jComboBox1.addItem(frmStart.e.getPersonnel().get(i).toString());
         }
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //try catch pour exceptions
-        String str = jComboBox1.getSelectedItem().toString();
-        char idPers = str.charAt(str.length() - 1);
-        //Personnel pers = frmStart.e.getPersonnelById(idPers.toString());;
-        System.out.println(str);
+        JOptionPane jop = new JOptionPane();
+        if (jSpinner1.getValue().equals(0)) {
+            jop.showMessageDialog(null, "Veuillez entrer la durée du congé", "Attention", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String str = jComboBox1.getSelectedItem().toString();
+            String[] parts = str.split(";");
+            String id = parts[3];
+            //parts[3] est ici l'id du personnel sélectionné
+
+            Personnel pers = frmStart.e.existPersonnel(id);
+
+            //on construit le congé avec les infos de la form
+            Conge unConge = new Conge((Date) jSpinnerdatedeb.getValue(), (int) jSpinner1.getValue());
+
+            try {
+                pers.poserConge(unConge);
+                System.out.println(pers.getConges());
+
+            } catch (poserCongeException ex) {
+                jop.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

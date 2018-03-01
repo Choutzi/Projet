@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import projet.exceptions.poserCongeException;
 
 /**
@@ -77,22 +78,27 @@ public class Personnel {
     }
 
     public void poserConge(Conge unConge) throws poserCongeException {
-        for (Conge co : this.conges) {
-            //date début congé
-            Date ddc = co.getDateDeb();
-            //date fin congé
-            Date dfc = co.getFin();
-            //date début congé posé
-            Date dduc = unConge.getDateDeb();
-            //date fin congé posé
-            Date dfuc = unConge.getFin();
+        if (this.conges.size() > 0) {
+            System.out.println(this.conges.size());
+            for (Conge co : this.conges) {
+                //date début congé
+                Date ddc = co.getDateDeb();
+                //date fin congé
+                Date dfc = co.getFin();
+                //date début congé posé
+                Date dduc = unConge.getDateDeb();
+                //date fin congé posé
+                Date dfuc = unConge.getFin();
 
-            //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
-            if ((ddc.before(dduc) && dfc.before(dfuc)) || (ddc.after(dduc) && dfc.after(dfuc))) {
-                this.conges.add(unConge);
-            } else {
-                throw new poserCongeException();
+                //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
+                if (!(ddc.before(dduc) && dfc.before(dfuc)) || !(ddc.after(dduc) && dfc.after(dfuc))) {
+                    throw new poserCongeException();
+                } else {
+                    this.conges.add(unConge);
+                }
             }
+        }else{
+            this.conges.add(unConge);
         }
 
     }
@@ -100,7 +106,7 @@ public class Personnel {
     public void initConge(ArrayList<String[]> c) throws ParseException {
         if (!c.isEmpty()) {
             for (String[] ligne : c) {
-               if (this.identifiant == Integer.parseInt(ligne[0])) {
+                if (this.identifiant == Integer.parseInt(ligne[0])) {
                     for (int i = 1; i < ligne.length; i = i + 2) {
                         this.conges.add(new Conge(new SimpleDateFormat("dd/MM/yyyy").parse(ligne[i]), Integer.parseInt(ligne[i + 1])));
                     }

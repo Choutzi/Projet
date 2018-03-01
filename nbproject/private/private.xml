@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/efgde/Documents/GitHub/Projet/src/Interface/frmAddConge.java</file>
-=======
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/Conge.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/Interface/frmStart.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/CSVmanager.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/Interface/frmAddConge.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/Interface/frmAddMission.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/Mission.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/Competence.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/Personnel.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/Interface/frmEquipeMission.java</file>
-            <file>file:/D:/Users/Choutzi/Documents/NetBeansProjects/Projet/src/projet/Entreprise.java</file>
->>>>>>> a95f827220f4534d4acb0e7ef2684d6e67c72f8e
+            <file>file:/C:/Users/efgde/Documents/GitHub/Projet/src/projet/Conge.java</file>
+            <file>file:/C:/Users/efgde/Documents/GitHub/Projet/src/projet/Personnel.java</file>
+            <file>file:/C:/Users/efgde/Documents/GitHub/Projet/src/projet/Entreprise.java</file>
+            <file>file:/C:/Users/efgde/Documents/GitHub/Projet/src/Interface/frmAddMission.java</file>
         </group>
     </open-files>
 </project-private>
