@@ -149,6 +149,10 @@ public class frmEquipeMission extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    /**
+     * Après avoir validé si la liste de compétence a bien un personnel pour chaqu'une d'entre elle alors l'équipe est enregistrée dans la liste personnel de la mission
+     * @param evt 
+     */
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         jTable1.setCellSelectionEnabled(true);
         jTable1.changeSelection(0, 0, false, false);

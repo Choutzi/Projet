@@ -30,6 +30,15 @@ public class Mission {
     };
     private String stat;
 
+    /**
+     * Création d'une mission ainsi que l'ajout de compétence requise
+     * @param nom
+     * @param descriptif
+     * @param dateDeb
+     * @param duree
+     * @param c
+     * @param e 
+     */
     public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) {
         this.nom = nom;
         this.descriptif = descriptif;
@@ -43,6 +52,11 @@ public class Mission {
         this.stat = "Preparation";
     }
 
+    /**
+     * Création d'une mission avec des données de type String
+     * @param mission
+     * @throws ParseException 
+     */
     public Mission(String[] mission) throws ParseException {
         this.nom = mission[0];
         this.descriptif = mission[1];
@@ -51,8 +65,11 @@ public class Mission {
         this.stat = mission[4];
     }
 
+    /**
+     * Permet d'obtenir le nombre de compétence requise pour la mission
+     * @return int
+     */
     public int getTaille() {
-        
         return this.competences.size();
     }
 
@@ -68,7 +85,10 @@ public class Mission {
         return this.equipe;
     }
 
-    // Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
+    /**
+     * 
+     * Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
+    */
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
         if (this.getTaille() > this.equipe.size()) {
             for (String[] Misseq : liste) {
@@ -85,6 +105,10 @@ public class Mission {
         }
     }
 
+    /**
+     * Si la mission n'a pas encore la compétence dans ça liste de compétence alors l'ajoute
+     * @param c 
+     */
     public void ajoutCompetence(Competence c) {
         if (!this.competences.contains(c)) {
             this.competences.add(c);
@@ -93,6 +117,11 @@ public class Mission {
     
     public Date getDatedeb(){return this.dateDeb;}
 
+    /**
+     * Méthode permettant à partir d'un ID d'ajouter une compétence existant dans la liste des compétences de l'entriprise dans une mission
+     * @param c
+     * @param e 
+     */
     public void ajoutCompetence(ArrayList<String[]> c, Entreprise e) {
         for (String[] ligne : c) {
             if (this.nom.equals(ligne[0])) {
@@ -110,6 +139,11 @@ public class Mission {
         return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat;
     }
 
+    
+    /**
+     * Méthode permettant d'obtenir la date de fin d'une mission
+     * @return Date
+     */
     public Date getFin() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.dateDeb);

@@ -23,6 +23,9 @@ public class jComboboxPersonnel extends JComboBox {
         this.populate();
     }
 
+    /**
+     * Méthode de sélection d'un personnel pour une compétence
+     */
     private void populate() {
         for (Personnel p : frmStart.e.getPersonnel()) {
             if (p.avoirComp(c)) {

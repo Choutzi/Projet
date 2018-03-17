@@ -339,7 +339,9 @@ public class frmStart extends javax.swing.JFrame {
         return f;
     }
 
-    //mise à jour de la table mission : on vide la table puis on relit la liste des mission de l'entreprise
+    /**
+     * mise à jour de la table mission : on vide la table puis on relit la liste des mission de l'entreprise
+     */
     public void majMission() {
         if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
             for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
@@ -353,22 +355,10 @@ public class frmStart extends javax.swing.JFrame {
         }
     }
     
-    //mise à jour de la table personnel : on vide la table puis on relit la liste du personnel de l'entreprise a fini !!
+    /**
+     * mise à jour de la table personnel : on vide la table puis on relit la liste du personnel de l'entreprise
+     */
     public void majPersonnel() {
-        if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
-            for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
-                ((DefaultTableModel) jTable2.getModel()).removeRow(i);
-            }
-        }
-        for (Mission m : e.getMission()) {
-            String[] line = m.toString().split(";");
-            ((DefaultTableModel) jTable2.getModel()).addRow(line);
-            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
-        }
-    }
-    
-    //mise à jour de la table compétence : on vide la table puis on relit la liste des compétences de l'entreprise à finir !!
-    public void majCompetence() {
         if (((DefaultTableModel) jTable2.getModel()).getRowCount() > 0) {
             for (int i = ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1; i > -1; i--) {
                 ((DefaultTableModel) jTable2.getModel()).removeRow(i);

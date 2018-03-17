@@ -34,6 +34,11 @@ public class Personnel {
         return this.identifiant;
     }
 
+    /**
+     * Constructeur Personnel avec des donnée de type String
+     * @param personnel
+     * @throws ParseException 
+     */
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];
@@ -41,7 +46,11 @@ public class Personnel {
         this.identifiant = Integer.parseInt(personnel[3]);
     }
 
-    //Iitialisation des compétences de chaque personne
+    /**
+     * Ajout des compétences associer à la personne suivant l'id
+     * @param comp
+     * @param e 
+     */
     public void addCompetence(ArrayList<String[]> comp, Entreprise e) {
         //on parcours la liste des compétences de chaque personne provenant du Fichier base de données pour chaque personne
         for (String[] id : comp) {
@@ -59,6 +68,11 @@ public class Personnel {
         }
     }
 
+    /**
+     * Méthode permettant d'obtenir un personnel existant avec son ID
+     * @param s
+     * @return personnel
+     */
     public boolean existPersonnel(String s) {
         return this.identifiant == Integer.parseInt(s);
     }
@@ -68,6 +82,11 @@ public class Personnel {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
 
+    /**
+     * Méthode permettant de savoir si une personne a la compétence passée en paramètre
+     * @param c
+     * @return boolean
+     */
     public boolean avoirComp(Competence c) {
         for (Competence comp : this.competences) {
             if (comp.getIdentifiant().equals(c.getIdentifiant())) {
@@ -77,6 +96,11 @@ public class Personnel {
         return false;
     }
 
+    /**
+     * A faire !!
+     * @param unConge
+     * @throws poserCongeException 
+     */
     public void poserConge(Conge unConge) throws poserCongeException {
         if (this.conges.size() > 0) {
             System.out.println(this.conges.size());
@@ -116,6 +140,11 @@ public class Personnel {
 
     }
 
+    /**
+     * A faire
+     * @param c
+     * @throws ParseException 
+     */
     public void initConge(ArrayList<String[]> c) throws ParseException {
         if (!c.isEmpty()) {
             for (String[] ligne : c) {
