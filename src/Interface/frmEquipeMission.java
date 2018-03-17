@@ -169,6 +169,7 @@ public class frmEquipeMission extends javax.swing.JFrame {
             }
         }
         mission.setStat("Planifiée");
+        dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
