@@ -11,8 +11,8 @@ package projet.exceptions;
  */
 public class poserCongeException extends Exception {
 
-    public poserCongeException() {
-        System.out.println("Vous essayez de poser un congé sur un congé existant !");
+    public poserCongeException(String message) {
+        super(message);
     }
 
 }

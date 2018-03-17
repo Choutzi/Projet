@@ -85,18 +85,31 @@ public class Personnel {
                 Date ddc = co.getDateDeb();
                 //date fin congé
                 Date dfc = co.getFin();
+                System.out.println(dfc);
                 //date début congé posé
                 Date dduc = unConge.getDateDeb();
                 //date fin congé posé
                 Date dfuc = unConge.getFin();
 
+                System.out.println(dfc.after(dfuc));
+                System.out.println(ddc.after(dduc));
+                
+                boolean avant = false;
+                boolean apres = false;
+                if(ddc.before(dduc) && dfc.before(dfuc)){
+                    apres = true;
+                }
+                if(ddc.after(dduc) && dfc.after(dfuc)){
+                    avant = true;
+                }
+                System.out.println(avant);
+                System.out.println(apres);
                 //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
-                if (!(ddc.before(dduc) && dfc.before(dfuc)) || !(ddc.after(dduc) && dfc.after(dfuc))) {
-                    throw new poserCongeException();
-                } else {
-                    this.conges.add(unConge);
+                if ((avant == false)&&(apres==false)) {
+                    throw new poserCongeException("Le congé est posé pendant un congé existant !");
                 }
             }
+            this.conges.add(unConge);
         }else{
             this.conges.add(unConge);
         }

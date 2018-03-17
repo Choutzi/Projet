@@ -167,7 +167,7 @@ public class frmAddConge extends javax.swing.JFrame {
                 System.out.println(pers.getConges());
 
             } catch (poserCongeException ex) {
-                jop.showMessageDialog(null, ex.getMessage(), "Attention", JOptionPane.WARNING_MESSAGE);
+                jop.showMessageDialog(null, ex.getLocalizedMessage(), "Attention", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
