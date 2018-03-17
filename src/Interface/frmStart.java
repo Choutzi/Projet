@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import projet.Entreprise;
 import projet.Mission;
 import projet.Personnel;
@@ -42,91 +43,62 @@ public class frmStart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonAjout = new javax.swing.JButton();
+        jButtonSupp = new javax.swing.JButton();
+        jButtonGestionEquipe = new javax.swing.JButton();
+        jButtonConge = new javax.swing.JButton();
+        jButtonModif = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonAjoutMission = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jSpinner1 = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         Enregistrer = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Entrerpise");
 
-        jPanel2.setVisible(false);
-
-        DefaultTableModel model2 = new DefaultTableModel();
-        model2.addColumn("Titre");
-        model2.addColumn("Description");
-        model2.addColumn("Date début");
-        model2.addColumn("Durée");
-        model2.addColumn("Statut");
-        model2.addColumn("Nombre personnel");
-        jTable2.setModel(model2);
-        jScrollPane2.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
         jLabel1.setText("Jour");
 
-        jButtonAjoutMission.setText("Ajouter Mission");
-        jButtonAjoutMission.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAjout.setText("Ajouter");
+        jButtonAjout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAjoutMissionActionPerformed(evt);
+                jButtonAjoutActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Supprimer Mission");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSupp.setText("Supprimer");
+        jButtonSupp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSuppActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Gestion de l'équipe Mission");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestionEquipe.setText("Gestion de l'équipe Mission");
+        jButtonGestionEquipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonGestionEquipeActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Ajouter Congé");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConge.setText("Ajouter Congé");
+        jButtonConge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCongeActionPerformed(evt);
+            }
+        });
+
+        jButtonModif.setText("Modifier");
+        jButtonModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModifActionPerformed(evt);
             }
         });
 
@@ -136,30 +108,48 @@ public class frmStart extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAjoutMission)
+                .addComponent(jButtonAjout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonModif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonSupp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(jButtonGestionEquipe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonConge)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel1)
-                .addComponent(jButtonAjoutMission)
-                .addComponent(jButton1)
-                .addComponent(jButton2)
-                .addComponent(jButton3))
+                .addComponent(jButtonAjout)
+                .addComponent(jButtonSupp)
+                .addComponent(jButtonGestionEquipe)
+                .addComponent(jButtonConge)
+                .addComponent(jButtonModif))
         );
 
-        jPanel1.setVisible(false);
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
+        DefaultTableModel model2 = new DefaultTableModel();
+        model2.addColumn("Titre");
+        model2.addColumn("Description");
+        model2.addColumn("Date début");
+        model2.addColumn("Durée");
+        model2.addColumn("Statut");
+        model2.addColumn("Nombre personnel");
+        jTable2.setModel(model2);
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(jTable2);
+
+        jTabbedPane1.addTab("Mission", jScrollPane2);
 
         DefaultTableModel model1 = new DefaultTableModel();
         model1.addColumn("Prenom");
@@ -171,20 +161,10 @@ public class frmStart extends javax.swing.JFrame {
             model1.addRow(line);
         }
         jTable1.setModel(model1);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-        );
-
-        jPanel3.setVisible(false);
+        jTabbedPane1.addTab("Personnel", jScrollPane1);
 
         DefaultTableModel model3 = new DefaultTableModel();
         model3.addColumn("ID");
@@ -195,53 +175,38 @@ public class frmStart extends javax.swing.JFrame {
             model3.addRow(line);
         }
         jTable3.setModel(model3);
+        jTable3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jTable3);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-        );
+        jTabbedPane1.addTab("Compétence", jScrollPane3);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
-        );
-
-        jMenu1.setText("Personnel");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Mission");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Compétence");
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu3);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 113, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(1, 1, 1)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,65 +222,32 @@ public class frmStart extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 33, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 35, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 35, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
-        jPanel3.setVisible(false);
-        jPanel4.setVisible(false);
-    }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        // TODO add your handling code here:
-        jPanel1.setVisible(false);
-        jPanel2.setVisible(true);
-        jPanel3.setVisible(false);
-        jPanel4.setVisible(false);
-    }//GEN-LAST:event_jMenu2MouseClicked
 
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        // TODO add your handling code here:
-        jPanel1.setVisible(false);
-        jPanel2.setVisible(false);
-        jPanel3.setVisible(true);
-        jPanel4.setVisible(false);
-    }//GEN-LAST:event_jMenu3MouseClicked
-
+    private void EnregistrerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnregistrerMouseClicked
+        e.sauvegarde();
+        JOptionPane.showMessageDialog(null, "Les modification ont bien été enregistrées", "Enregistrer", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_EnregistrerMouseClicked
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         Date day = new Date();
@@ -338,11 +270,24 @@ public class frmStart extends javax.swing.JFrame {
         this.majMission();
     }//GEN-LAST:event_jSpinner1StateChanged
 
-    private void jButtonAjoutMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutMissionActionPerformed
-        new frmAddMission().setVisible(true);
-    }//GEN-LAST:event_jButtonAjoutMissionActionPerformed
+    private void jButtonCongeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCongeActionPerformed
+        frmAddConge frm = new frmAddConge();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jButtonCongeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonGestionEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionEquipeActionPerformed
+        int i=jTable2.getSelectedRow();
+        if (i!=-1){
+            //on lance la gestion d'équipe si l'utilisateur a bien sélectionné une mission dans la liste
+            new frmEquipeMission(i).setVisible(true);
+        }else{
+            //message warning si aucune sélection
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Veuillez sélectionner une mission pour gérer son équipe", "Attention", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonGestionEquipeActionPerformed
+
+    private void jButtonSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuppActionPerformed
         //on récupère l'index de la sélection et on vérifie si l'utilisateur a bien sélectionné une compétence
         int i=jTable2.getSelectedRow();
         if (i!=-1){
@@ -354,32 +299,40 @@ public class frmStart extends javax.swing.JFrame {
             JOptionPane jop = new JOptionPane();
             jop.showMessageDialog(null, "Veuillez sélectionner une mission à supprimer", "Attention", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSuppActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i=jTable2.getSelectedRow();
-        if (i!=-1){
-            //on lance la gestion d'équipe si l'utilisateur a bien sélectionné une mission dans la liste
-            new frmEquipeMission(i).setVisible(true);
-        }else{
-            //message warning si aucune sélection
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Veuillez sélectionner une mission pour gérer son équipe", "Attention", JOptionPane.WARNING_MESSAGE);
+    private void jButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutActionPerformed
+        new frmAddMission().setVisible(true);
+    }//GEN-LAST:event_jButtonAjoutActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        int select = this.jTabbedPane1.getSelectedIndex();
+        switch(select){
+            case 1 : 
+                this.jPanel5.setVisible(true);
+                this.jButtonAjout.setVisible(false);
+                this.jButtonModif.setVisible(true);
+                this.jButtonConge.setVisible(true);
+                this.jButtonSupp.setVisible(false);
+                this.jButtonGestionEquipe.setVisible(false);
+                break;
+            case 0 :
+                this.jPanel5.setVisible(true);
+                this.jButtonAjout.setVisible(true);
+                this.jButtonModif.setVisible(true);
+                this.jButtonConge.setVisible(false);
+                this.jButtonSupp.setVisible(true);
+                this.jButtonGestionEquipe.setVisible(true);
+                break;
+            case 2 :
+                this.jPanel5.setVisible(false);
+                break;
         }
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
-
-    private void EnregistrerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnregistrerMouseClicked
-        e.sauvegarde();
-        JOptionPane.showMessageDialog(null, "Les modification ont bien été enregistrées", "Enregistrer", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_EnregistrerMouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        frmAddConge frm = new frmAddConge();
-        frm.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonModifActionPerformed
 
 
     public frmStart getFrm() {
@@ -427,7 +380,7 @@ public class frmStart extends javax.swing.JFrame {
             ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
         }
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -467,24 +420,20 @@ public class frmStart extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Enregistrer;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonAjoutMission;
+    private javax.swing.JButton jButtonAjout;
+    private javax.swing.JButton jButtonConge;
+    private javax.swing.JButton jButtonGestionEquipe;
+    private javax.swing.JButton jButtonModif;
+    private javax.swing.JButton jButtonSupp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
