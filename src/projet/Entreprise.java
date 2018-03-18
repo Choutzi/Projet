@@ -18,24 +18,43 @@ public class Entreprise {
     private static ArrayList<Mission> ListeMission = new ArrayList<Mission>();
     private static ArrayList<Competence> ListeCompetence = new ArrayList<Competence>();
 
+    /**
+     * Méthode pour ajouter une compétence à la liste de compétence de l'entreprise
+     * @param comp 
+     */
     public void addCompetence(ArrayList<String[]> comp) {
         for (int i = 0; i < comp.size(); i++) {
             Entreprise.ListeCompetence.add(new Competence(comp.get(i)));
         }
     }
 
+    /**
+     * Méthode pour ajouter des missions à partir d'une arraylist à la liste de mission de l'entreprise 
+     * @param mission
+     * @throws ParseException 
+     */
     public void addMission(ArrayList<String[]> mission) throws ParseException {
         for (int i = 0; i < (mission.size()); i++) {
             Entreprise.ListeMission.add(new Mission(mission.get(i)));
         }
     }
 
+    /**
+     * Méthode pour ajouter le personnel à la liste de personnel de l'entreprise
+     * @param personnel
+     * @throws ParseException 
+     */
     public void addPersonnel(ArrayList<String[]> personnel) throws ParseException {
         for (int i = 0; i < personnel.size(); i++) {
             Entreprise.ListePersonnel.add(new Personnel(personnel.get(i)));
         }
     }
 
+    /**
+     * Méthode permettant de vérifier si une copétence (son Id) existe bien dans la liste de l'entreprise et de la renvoyer
+     * @param s
+     * @return compétence
+     */
     public Competence existCompetence(String s) {
         for (Competence comp : Entreprise.ListeCompetence) {
             if (comp.getIdentifiant().equals(s)) {
@@ -45,6 +64,11 @@ public class Entreprise {
         return null;
     }
 
+    /**
+     * Permet de vérifier suivant un identifiant donné si la personne ayant cet identifant existe dans la liste de l'entreprise et la renvoie.
+     * @param s
+     * @return personnel 
+     */
     public Personnel existPersonnel(String s) {
         for (Personnel per : Entreprise.ListePersonnel) {
             if (per.existPersonnel(s)) {
@@ -67,22 +91,11 @@ public class Entreprise {
         return Entreprise.ListeCompetence;
     }
    
-    /**
-     * méthode qui esixt déjà avec existPers en plus celle-ci ne marche pas
-     * @param idPers
-     * @return Personnel
-     
-   public Personnel getPersonnelById(String idPers){
-       for(Personnel unPers : Entreprise.ListePersonnel){
-           if(idPers.equals(unPers.getId())){
-               
-               return unPers;
-           }
-       }
-        return null;
-   }*/
 
-   
+   /**
+    * Méthode permettant d'initialiser l'entreprise en remplissant toutes les listes en appelant les méthode du manager de fichier.
+    * @throws ParseException 
+    */
    public void initEntrprise() throws ParseException{
        Manager cs=new CSVmanager();
        //liste des compétences connues dans l'entreprise

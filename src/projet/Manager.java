@@ -12,6 +12,17 @@ import java.util.ArrayList;
  * @author Choutzi
  */
 public interface Manager {
+    /**
+     * Méthode permettant de renvoyer les données lu dans un fichier à un répertoire donné sous la forme de arraylist<String[]>
+     * @param Dir
+     * @return ArrayList<String[]>
+     */
     public ArrayList<String[]> lecture(String Dir);
+    
+    /**
+     * Permet d'écrire des données sous la fomre de StringBuilder à un répertoire donné
+     * @param Dir
+     * @param builder 
+     */
     public void ecrire(String Dir, StringBuilder builder);
 }
