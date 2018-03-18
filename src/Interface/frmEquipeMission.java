@@ -7,6 +7,7 @@ package Interface;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projet.Competence;
 import projet.Mission;
@@ -161,7 +162,8 @@ public class frmEquipeMission extends javax.swing.JFrame {
                         Personnel p = frmStart.e.existPersonnel(perso[3]);
                         mission.affecterPers(p);
                     } catch (affecterPersException ex) {
-                        System.out.println(ex);
+                        JOptionPane jop = new JOptionPane();
+                        jop.showMessageDialog(null, ex.getLocalizedMessage(), "Attention", JOptionPane.WARNING_MESSAGE);
                     }
                 }
             } else {

@@ -126,7 +126,7 @@ public class Mission {
      */
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
             //si pour chaque congé de la personne
-           /* for (Conge unConge : unePersonne.getConges()) {
+            for (Conge unConge : unePersonne.getConges()) {
                 //date début congé
                 Date ddc = unConge.getDateDeb();
                 //date fin congé
@@ -136,14 +136,17 @@ public class Mission {
                 //date fin mission
                 Date dfm = this.getFin();
 
-                //si la date de début et de fin du congé sont inférieurs à la date de début mission OU si la date de début congé et la date de fin congé sont supérieurs à la date de fin mission
-                if ((ddc.before(ddm) && dfc.before(ddm)) || (ddc.after(dfm) && dfc.after(dfm))) {
-                    this.equipe.add(unePersonne);
-                    unePersonne.ajouterMission(this);
-                } else {
-                    throw new affecterPersException();
+                
+                if (ddm.after(ddc) && dfm.before(dfc)) {
+                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
                 }
-            }*/
+                if (dfm.after(ddc) && dfm.before(dfc)) {
+                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
+                }
+                if(ddm.before(ddc) && dfm.after(dfc)) {
+                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
+                }
+            }
 
             this.equipe.add(unePersonne);
     }

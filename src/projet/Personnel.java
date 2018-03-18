@@ -17,7 +17,7 @@ import projet.exceptions.poserCongeException;
  * @author Choutzi
  */
 public class Personnel {
-
+    
     private String nom;
     private String prenom;
     private Date entree;
@@ -25,15 +25,15 @@ public class Personnel {
     private ArrayList<Competence> competences = new ArrayList<Competence>();
     private ArrayList<Conge> conges = new ArrayList<Conge>();
     private ArrayList<Mission> missions = new ArrayList<Mission>();
-
+    
     public ArrayList<Conge> getConges() {
         return conges;
     }
-
+    
     public int getId() {
         return this.identifiant;
     }
-
+    
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
         this.prenom = personnel[1];
@@ -58,16 +58,16 @@ public class Personnel {
             }
         }
     }
-
+    
     public boolean existPersonnel(String s) {
         return this.identifiant == Integer.parseInt(s);
     }
-
+    
     @Override
     public String toString() {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
-
+    
     public boolean avoirComp(Competence c) {
         for (Competence comp : this.competences) {
             if (comp.getIdentifiant().equals(c.getIdentifiant())) {
@@ -76,7 +76,10 @@ public class Personnel {
         }
         return false;
     }
-
+    
+    /*
+    Permet d'affecter un Congé à une personne, renvoie une exception si le congé empiète sur un autre
+    */
     public void poserConge(Conge unConge) throws poserCongeException {
         if (this.conges.size() > 0) {
             System.out.println(this.conges.size());
@@ -85,37 +88,31 @@ public class Personnel {
                 Date ddc = co.getDateDeb();
                 //date fin congé
                 Date dfc = co.getFin();
-                System.out.println(dfc);
                 //date début congé posé
                 Date dduc = unConge.getDateDeb();
                 //date fin congé posé
                 Date dfuc = unConge.getFin();
-
-                System.out.println(dfc.after(dfuc));
-                System.out.println(ddc.after(dduc));
                 
-                boolean avant = false;
-                boolean apres = false;
-                if(ddc.before(dduc) && dfc.before(dfuc)){
-                    apres = true;
-                }
-                if(ddc.after(dduc) && dfc.after(dfuc)){
-                    avant = true;
-                }
-                System.out.println(avant);
-                System.out.println(apres);
+                System.out.println(co.toString());
                 //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
-                if ((avant == false)&&(apres==false)) {
+                if (dduc.after(ddc) && dduc.before(dfc)) {
                     throw new poserCongeException("Le congé est posé pendant un congé existant !");
                 }
+                if (dfuc.after(ddc) && dfuc.before(dfc)) {
+                    throw new poserCongeException("Le congé est posé pendant un congé existant !");
+                }
+                if(dduc.before(ddc) && dfuc.after(dfc)) {
+                    throw new poserCongeException("Le congé est posé pendant un congé existant !");
+                }
+                
             }
             this.conges.add(unConge);
-        }else{
+        } else {
             this.conges.add(unConge);
         }
-
+        
     }
-
+    
     public void initConge(ArrayList<String[]> c) throws ParseException {
         if (!c.isEmpty()) {
             for (String[] ligne : c) {
@@ -127,11 +124,11 @@ public class Personnel {
             }
         }
     }
-
+    
     public ArrayList<Competence> getCompetence() {
         return this.competences;
     }
-
+    
     public void ajouterMission(Mission uneMission) {
         this.missions.add(uneMission);
     }
