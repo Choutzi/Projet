@@ -74,7 +74,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonAjout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonModif" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifMiss" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonModifPerso" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonSupp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -95,7 +97,8 @@
                   <Component id="jButtonSupp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonGestionEquipe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonConge" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonModif" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifMiss" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifPerso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -138,12 +141,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCongeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonModif">
+        <Component class="javax.swing.JButton" name="jButtonModifMiss">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifier"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifMissActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonModifPerso">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modifier"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifPersoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -156,6 +167,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jScrollPane2PropertyChange"/>
+          </Events>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>

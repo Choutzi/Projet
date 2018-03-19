@@ -49,7 +49,8 @@ public class frmStart extends javax.swing.JFrame {
         jButtonSupp = new javax.swing.JButton();
         jButtonGestionEquipe = new javax.swing.JButton();
         jButtonConge = new javax.swing.JButton();
-        jButtonModif = new javax.swing.JButton();
+        jButtonModifMiss = new javax.swing.JButton();
+        jButtonModifPerso = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -97,10 +98,17 @@ public class frmStart extends javax.swing.JFrame {
             }
         });
 
-        jButtonModif.setText("Modifier");
-        jButtonModif.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifMiss.setText("Modifier");
+        jButtonModifMiss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModifActionPerformed(evt);
+                jButtonModifMissActionPerformed(evt);
+            }
+        });
+
+        jButtonModifPerso.setText("Modifier");
+        jButtonModifPerso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModifPersoActionPerformed(evt);
             }
         });
 
@@ -112,7 +120,9 @@ public class frmStart extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButtonAjout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonModif)
+                .addComponent(jButtonModifMiss)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonModifPerso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSupp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -131,12 +141,19 @@ public class frmStart extends javax.swing.JFrame {
                 .addComponent(jButtonSupp)
                 .addComponent(jButtonGestionEquipe)
                 .addComponent(jButtonConge)
-                .addComponent(jButtonModif))
+                .addComponent(jButtonModifMiss)
+                .addComponent(jButtonModifPerso))
         );
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
+            }
+        });
+
+        jScrollPane2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jScrollPane2PropertyChange(evt);
             }
         });
 
@@ -326,7 +343,8 @@ public class frmStart extends javax.swing.JFrame {
             case 1 : 
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(false);
-                this.jButtonModif.setVisible(true);
+                this.jButtonModifMiss.setVisible(true);
+                this.jButtonModifPerso.setVisible(false);
                 this.jButtonConge.setVisible(true);
                 this.jButtonSupp.setVisible(false);
                 this.jButtonGestionEquipe.setVisible(false);
@@ -334,7 +352,8 @@ public class frmStart extends javax.swing.JFrame {
             case 0 :
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(true);
-                this.jButtonModif.setVisible(true);
+                this.jButtonModifMiss.setVisible(false);
+                this.jButtonModifPerso.setVisible(true);
                 this.jButtonConge.setVisible(false);
                 this.jButtonSupp.setVisible(true);
                 this.jButtonGestionEquipe.setVisible(true);
@@ -345,9 +364,17 @@ public class frmStart extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
-    private void jButtonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifActionPerformed
+    private void jButtonModifMissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifMissActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonModifActionPerformed
+    }//GEN-LAST:event_jButtonModifMissActionPerformed
+
+    private void jScrollPane2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jScrollPane2PropertyChange
+
+    }//GEN-LAST:event_jScrollPane2PropertyChange
+
+    private void jButtonModifPersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifPersoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonModifPersoActionPerformed
 
 
     public frmStart getFrm() {
@@ -428,7 +455,8 @@ public class frmStart extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAjout;
     private javax.swing.JButton jButtonConge;
     private javax.swing.JButton jButtonGestionEquipe;
-    private javax.swing.JButton jButtonModif;
+    private javax.swing.JButton jButtonModifMiss;
+    private javax.swing.JButton jButtonModifPerso;
     private javax.swing.JButton jButtonSupp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
