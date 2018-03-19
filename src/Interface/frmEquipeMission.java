@@ -170,8 +170,9 @@ public class frmEquipeMission extends javax.swing.JFrame {
                 if (!perso[3].isEmpty()) {
                     try {
                         Personnel p = frmStart.e.existPersonnel(perso[3]);
-                        mission.affecterPers(p);
                         p.ajouterMission(mission);
+                        mission.affecterPers(p);
+                        
                     } catch (affecterPersException ex) {
                         JOptionPane jop = new JOptionPane();
                         jop.showMessageDialog(null, ex.getLocalizedMessage(), "Attention", JOptionPane.WARNING_MESSAGE);

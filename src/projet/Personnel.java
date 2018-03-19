@@ -75,46 +75,48 @@ public class Personnel {
     public ArrayList<Conge> getConges() {
         return conges;
     }
-    
+
     /**
      * permet de retrouver un congé à partir d'une chaine
+     *
      * @param mission
-     * @return 
+     * @return
      */
-    public Conge getConge(Object conge){
+    public Conge getConge(Object conge) {
         Conge leC;
-        for (Conge c : this.conges){
-            if(c.toString().equals(conge)){
+        for (Conge c : this.conges) {
+            if (c.toString().equals(conge)) {
                 leC = c;
                 return leC;
             }
         }
         return null;
-        
+
     }
-    
+
     /**
      * permet de retrouver une mission à partir d'une chaine
+     *
      * @param mission
-     * @return 
+     * @return
      */
-    public Mission getMission(Object mission){
+    public Mission getMission(Object mission) {
         Mission laM;
-        for (Mission m : this.missions){
-            if(m.toString().equals(mission)){
+        for (Mission m : this.missions) {
+            if (m.toString().equals(mission)) {
                 laM = m;
                 return laM;
             }
         }
         return null;
-        
+
     }
-    
-    public void removeConge(Conge unConge){
+
+    public void removeConge(Conge unConge) {
         this.conges.remove(unConge);
     }
-    
-    public void removeMission(Mission uneMission){
+
+    public void removeMission(Mission uneMission) {
         this.missions.remove(uneMission);
     }
 
@@ -153,6 +155,36 @@ public class Personnel {
                         //on récupère l'objet compétence grace à l'ID contenu dans la ligne
                         this.competences.add(e.existCompetence(cp));
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * ajouter une compétence à la liste de compétences de la personne
+     *
+     * @param uneCompetence
+     */
+    public void addComp(Competence uneCompetence) {
+        this.competences.add(uneCompetence);
+    }
+
+    /**
+     * On enlève la compétence de la liste des compétences
+     * @param comp
+     */
+    public void removeComp(Competence comp, Entreprise e) {
+        this.competences.remove(comp);
+        
+        for (Mission m : this.missions) {
+            for (Competence c : this.competences) {
+                if(m.getCompetences().contains(comp)){
+                    m.removePersonnel(this);
+                    Mission me = e.getMission(m);
+                    me.removePersonnel(this);
+                    if(!m.getPersonnels().contains(this))
+                        this.missions.remove(m);
+                    
                 }
             }
         }
@@ -251,6 +283,27 @@ public class Personnel {
     }
 
     public void ajouterMission(Mission uneMission) throws affecterPersException {
+
+        for (Conge unConge : this.conges) {
+            //date début congé
+            Date ddc = unConge.getDateDeb();
+            //date fin congé
+            Date dfc = unConge.getFin();
+            //date début mission
+            Date ddm = uneMission.getDatedeb();
+            //date fin mission
+            Date dfm = uneMission.getFin();
+
+            if (ddm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
+            }
+            if (dfm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
+            }
+            if (ddm.before(ddc) && dfm.after(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
+            }
+        }
         if (this.missions.size() > 0) {
             for (Mission m : this.missions) {
 
