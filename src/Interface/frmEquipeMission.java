@@ -176,6 +176,7 @@ public class frmEquipeMission extends javax.swing.JFrame {
         }
         if(mission.getStat()=="Préparation")
             mission.setStat("Planifiée");
+        frmStart.f.majMission();
         dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 

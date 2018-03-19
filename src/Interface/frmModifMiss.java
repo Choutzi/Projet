@@ -224,26 +224,9 @@ public class frmModifMiss extends javax.swing.JFrame {
         //si les champs sont remplis 
         if ((this.jListComp.getModel().getSize() != 0) && ((int) this.jSpinnerDuree.getValue() != 0) && (!this.jTextFieldDesc.getText().isEmpty())) {
             int miss = frmStart.e.getMission().indexOf(mi);
+            int com = 0;
             boolean compdeja = false;
             String[] contlist = this.jListComp.getModel().toString().split(",");
-            
-            frmStart.e.getMission().get(miss).setDateDeb((Date) this.jSpinnerDatedeb.getValue());
-            frmStart.e.getMission().get(miss).setDescriptif(this.jTextFieldDesc.getText());
-            frmStart.e.getMission().get(miss).setDuree((int) this.jSpinnerDuree.getValue());
-           // pour chaque compétence de la mission à mettre à jours on vérifie si elle existe dans la liste de l'user
-            for (Competence c : frmStart.e.getMission().get(miss).getCompetences()) {
-                for (String s : contlist) {
-                    if (c.toString().equals(s) || !compdeja) {
-                        compdeja = true;
-                    }
-                }
-                //si la compétence n'est plus dans la liste choisie par l'user alors on supprime le personnel associé de l'équipe
-                if (!compdeja) {
-                    if (frmStart.e.getMission().get(miss).getPersonnels().size()>frmStart.e.getMission().get(miss).getCompetences().indexOf(c))
-                        frmStart.e.getMission().get(miss).getPersonnels().remove(frmStart.e.getMission().get(miss).getCompetences().indexOf(c));
-                }
-                compdeja = false;
-            }
             //création de l'arraylist contenant chaque ligne du tableau
             ArrayList<String[]> contenuList = new ArrayList<>();
             //on récupère chaque ligne de la jList des copétences requises
@@ -253,6 +236,26 @@ public class frmModifMiss extends javax.swing.JFrame {
             for (int i = 0; i < contlist.length; i++) {
                 comp = contlist[i].split(";");
                 contenuList.add(comp);
+            }
+            
+            frmStart.e.getMission().get(miss).setDateDeb((Date) this.jSpinnerDatedeb.getValue());
+            frmStart.e.getMission().get(miss).setDescriptif(this.jTextFieldDesc.getText());
+            frmStart.e.getMission().get(miss).setDuree((int) this.jSpinnerDuree.getValue());
+           // pour chaque compétence de la mission à mettre à jours on vérifie si elle existe dans la liste de l'user
+            for (Competence c : frmStart.e.getMission().get(miss).getCompetences()) {
+                for (String[] s : contenuList) {
+                    if (c == frmStart.e.existCompetence(s[0].substring(1)) && !compdeja) {
+                        compdeja = true;
+                    }
+                }
+                //si la compétence n'est plus dans la liste choisie par l'user alors on supprime le personnel associé de l'équipe
+                if (!compdeja) {
+                        if(!frmStart.e.getMission().get(miss).getPersonnels().isEmpty()){
+                        frmStart.e.getMission().get(miss).getPersonnels().remove(frmStart.e.getMission().get(miss).getCompetences().indexOf(c)-com);
+                        com++;
+                        }
+                }
+                compdeja = false;
             }
             //on vide la liste de compétence de la mission puis on la met à jour
             frmStart.e.getMission().get(miss).getCompetences().clear();

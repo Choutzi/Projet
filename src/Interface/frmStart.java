@@ -401,7 +401,7 @@ public class frmStart extends javax.swing.JFrame {
         for (Mission m : e.getMission()) {
             String[] line = m.toString().split(";");
             ((DefaultTableModel) jTable2.getModel()).addRow(line);
-            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
+            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getPersonnels().size()+"/"+m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
         }
     }
     

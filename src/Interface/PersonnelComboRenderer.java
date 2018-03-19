@@ -30,7 +30,7 @@ public class PersonnelComboRenderer extends AbstractCellEditor implements
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        return (j);
+        return j;
     }
 
     @Override
