@@ -343,8 +343,8 @@ public class frmStart extends javax.swing.JFrame {
             case 1 : 
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(false);
-                this.jButtonModifMiss.setVisible(true);
-                this.jButtonModifPerso.setVisible(false);
+                this.jButtonModifMiss.setVisible(false);
+                this.jButtonModifPerso.setVisible(true);
                 this.jButtonConge.setVisible(true);
                 this.jButtonSupp.setVisible(false);
                 this.jButtonGestionEquipe.setVisible(false);
@@ -352,8 +352,8 @@ public class frmStart extends javax.swing.JFrame {
             case 0 :
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(true);
-                this.jButtonModifMiss.setVisible(false);
-                this.jButtonModifPerso.setVisible(true);
+                this.jButtonModifMiss.setVisible(true);
+                this.jButtonModifPerso.setVisible(false);
                 this.jButtonConge.setVisible(false);
                 this.jButtonSupp.setVisible(true);
                 this.jButtonGestionEquipe.setVisible(true);
