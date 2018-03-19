@@ -49,8 +49,8 @@ public class frmStart extends javax.swing.JFrame {
         jButtonSupp = new javax.swing.JButton();
         jButtonGestionEquipe = new javax.swing.JButton();
         jButtonConge = new javax.swing.JButton();
-        jButtonModifMiss = new javax.swing.JButton();
-        jButtonModifPerso = new javax.swing.JButton();
+        jButtonModifPers = new javax.swing.JButton();
+        jButtonModifMission = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -58,8 +58,6 @@ public class frmStart extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jSpinner1 = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -98,17 +96,17 @@ public class frmStart extends javax.swing.JFrame {
             }
         });
 
-        jButtonModifMiss.setText("Modifier");
-        jButtonModifMiss.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifPers.setText("Modifier");
+        jButtonModifPers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModifMissActionPerformed(evt);
+                jButtonModifPersActionPerformed(evt);
             }
         });
 
-        jButtonModifPerso.setText("Modifier");
-        jButtonModifPerso.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifMission.setText("Modifier");
+        jButtonModifMission.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModifPersoActionPerformed(evt);
+                jButtonModifMissionActionPerformed(evt);
             }
         });
 
@@ -120,9 +118,9 @@ public class frmStart extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButtonAjout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonModifMiss)
+                .addComponent(jButtonModifPers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonModifPerso)
+                .addComponent(jButtonModifMission)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSupp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,8 +139,8 @@ public class frmStart extends javax.swing.JFrame {
                 .addComponent(jButtonSupp)
                 .addComponent(jButtonGestionEquipe)
                 .addComponent(jButtonConge)
-                .addComponent(jButtonModifMiss)
-                .addComponent(jButtonModifPerso))
+                .addComponent(jButtonModifPers)
+                .addComponent(jButtonModifMission))
         );
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -198,19 +196,6 @@ public class frmStart extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
 
         jTabbedPane1.addTab("Compétence", jScrollPane3);
-
-        DefaultTableModel model4 = new DefaultTableModel(); 
-        model3.addColumn("ID");       
-        model3.addColumn("Description Anglaise");    
-        model3.addColumn("Description Française");  
-        for (Competence c : e.getCompetence()) {   
-            String[] line = c.toString().split(";");
-            model3.addRow(line);    
-        }
-        jTable4.setModel(model4);
-        jScrollPane4.setViewportView(jTable4);
-
-        jTabbedPane1.addTab("tab4", jScrollPane4);
 
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -343,8 +328,8 @@ public class frmStart extends javax.swing.JFrame {
             case 1 : 
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(false);
-                this.jButtonModifMiss.setVisible(true);
-                this.jButtonModifPerso.setVisible(false);
+                this.jButtonModifPers.setVisible(true);
+                this.jButtonModifMission.setVisible(false);
                 this.jButtonConge.setVisible(true);
                 this.jButtonSupp.setVisible(false);
                 this.jButtonGestionEquipe.setVisible(false);
@@ -352,8 +337,8 @@ public class frmStart extends javax.swing.JFrame {
             case 0 :
                 this.jPanel5.setVisible(true);
                 this.jButtonAjout.setVisible(true);
-                this.jButtonModifMiss.setVisible(false);
-                this.jButtonModifPerso.setVisible(true);
+                this.jButtonModifPers.setVisible(false);
+                this.jButtonModifMission.setVisible(true);
                 this.jButtonConge.setVisible(false);
                 this.jButtonSupp.setVisible(true);
                 this.jButtonGestionEquipe.setVisible(true);
@@ -364,17 +349,26 @@ public class frmStart extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
-    private void jButtonModifMissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifMissActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonModifMissActionPerformed
+    private void jButtonModifPersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifPersActionPerformed
+        int idPerso = jTable1.getSelectedRow();
+        System.out.println(idPerso);
+        if (idPerso!=-1){
+            //on lance la gestion d'équipe si l'utilisateur a bien sélectionné une mission dans la liste
+            new frmModifPers(idPerso).setVisible(true);
+        }else{
+            //message warning si aucune sélection
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Veuillez sélectionner une mission pour gérer son équipe", "Attention", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonModifPersActionPerformed
 
     private void jScrollPane2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jScrollPane2PropertyChange
 
     }//GEN-LAST:event_jScrollPane2PropertyChange
 
-    private void jButtonModifPersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifPersoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonModifPersoActionPerformed
+    private void jButtonModifMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifMissionActionPerformed
+        
+    }//GEN-LAST:event_jButtonModifMissionActionPerformed
 
 
     public frmStart getFrm() {
@@ -455,8 +449,8 @@ public class frmStart extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAjout;
     private javax.swing.JButton jButtonConge;
     private javax.swing.JButton jButtonGestionEquipe;
-    private javax.swing.JButton jButtonModifMiss;
-    private javax.swing.JButton jButtonModifPerso;
+    private javax.swing.JButton jButtonModifMission;
+    private javax.swing.JButton jButtonModifPers;
     private javax.swing.JButton jButtonSupp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -465,12 +459,10 @@ public class frmStart extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 }

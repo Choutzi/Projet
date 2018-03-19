@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import projet.exceptions.affecterPersException;
 import projet.exceptions.poserCongeException;
 
 /**
@@ -17,27 +18,118 @@ import projet.exceptions.poserCongeException;
  * @author Choutzi
  */
 public class Personnel {
-    
+
     private String nom;
     private String prenom;
     private Date entree;
     private int identifiant;
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setEntree(Date entree) {
+        this.entree = entree;
+    }
+
+    public void setCompetences(ArrayList<Competence> competences) {
+        this.competences = competences;
+    }
+
+    public void setConges(ArrayList<Conge> conges) {
+        this.conges = conges;
+    }
+
+    public void setMissions(ArrayList<Mission> missions) {
+        this.missions = missions;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public Date getEntree() {
+        return entree;
+    }
+
+    public int getIdentifiant() {
+        return identifiant;
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return competences;
+    }
+
+    public ArrayList<Mission> getMissions() {
+        return missions;
+    }
     private ArrayList<Competence> competences = new ArrayList<Competence>();
     private ArrayList<Conge> conges = new ArrayList<Conge>();
     private ArrayList<Mission> missions = new ArrayList<Mission>();
-    
+
     public ArrayList<Conge> getConges() {
         return conges;
     }
     
+    /**
+     * permet de retrouver un congé à partir d'une chaine
+     * @param mission
+     * @return 
+     */
+    public Conge getConge(Object conge){
+        Conge leC;
+        for (Conge c : this.conges){
+            if(c.toString().equals(conge)){
+                leC = c;
+                return leC;
+            }
+        }
+        return null;
+        
+    }
+    
+    /**
+     * permet de retrouver une mission à partir d'une chaine
+     * @param mission
+     * @return 
+     */
+    public Mission getMission(Object mission){
+        Mission laM;
+        for (Mission m : this.missions){
+            if(m.toString().equals(mission)){
+                laM = m;
+                return laM;
+            }
+        }
+        return null;
+        
+    }
+    
+    public void removeConge(Conge unConge){
+        this.conges.remove(unConge);
+    }
+    
+    public void removeMission(Mission uneMission){
+        this.missions.remove(uneMission);
+    }
+
     public int getId() {
         return this.identifiant;
     }
 
     /**
      * Constructeur Personnel avec des donnée de type String
+     *
      * @param personnel
-     * @throws ParseException 
+     * @throws ParseException
      */
     public Personnel(String[] personnel) throws ParseException {
         this.nom = personnel[0];
@@ -48,8 +140,9 @@ public class Personnel {
 
     /**
      * Ajout des compétences associer à la personne suivant l'id
+     *
      * @param comp
-     * @param e 
+     * @param e
      */
     public void addCompetence(ArrayList<String[]> comp, Entreprise e) {
         //on parcours la liste des compétences de chaque personne provenant du Fichier base de données pour chaque personne
@@ -70,20 +163,23 @@ public class Personnel {
 
     /**
      * Méthode permettant d'obtenir un personnel existant avec son ID
+     *
      * @param s
      * @return personnel
      */
     public boolean existPersonnel(String s) {
         return this.identifiant == Integer.parseInt(s);
     }
-    
+
     @Override
     public String toString() {
         return this.nom + ";" + this.prenom + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.entree)) + ";" + this.identifiant;
     }
 
     /**
-     * Méthode permettant de savoir si une personne a la compétence passée en paramètre
+     * Méthode permettant de savoir si une personne a la compétence passée en
+     * paramètre
+     *
      * @param c
      * @return boolean
      */
@@ -95,15 +191,12 @@ public class Personnel {
         }
         return false;
     }
-    
-    /*
-    Permet d'affecter un Congé à une personne, renvoie une exception si le congé empiète sur un autre
-    */
 
     /**
-     * A faire !!
+     * Ajoute un congé à une personne
+     *
      * @param unConge
-     * @throws poserCongeException 
+     * @throws poserCongeException
      */
     public void poserConge(Conge unConge) throws poserCongeException {
         if (this.conges.size() > 0) {
@@ -117,7 +210,7 @@ public class Personnel {
                 Date dduc = unConge.getDateDeb();
                 //date fin congé posé
                 Date dfuc = unConge.getFin();
-                
+
                 System.out.println(co.toString());
                 //si la date de début et de fin de chaque congé sont inférieurs à la date de début du congé posé OU si la date de début de chaque congé et la date de fin de chaque congé sont supérieurs à la date de fin du congé posé
                 if (dduc.after(ddc) && dduc.before(dfc)) {
@@ -126,22 +219,23 @@ public class Personnel {
                 if (dfuc.after(ddc) && dfuc.before(dfc)) {
                     throw new poserCongeException("Le congé est posé pendant un congé existant !");
                 }
-                if(dduc.before(ddc) && dfuc.after(dfc)) {
+                if (dduc.before(ddc) && dfuc.after(dfc)) {
                     throw new poserCongeException("Le congé est posé pendant un congé existant !");
                 }
-                
+
             }
             this.conges.add(unConge);
         } else {
             this.conges.add(unConge);
         }
-        
+
     }
 
     /**
      * A faire
+     *
      * @param c
-     * @throws ParseException 
+     * @throws ParseException
      */
     public void initConge(ArrayList<String[]> c) throws ParseException {
         if (!c.isEmpty()) {
@@ -154,12 +248,38 @@ public class Personnel {
             }
         }
     }
-    
+
     public ArrayList<Competence> getCompetence() {
         return this.competences;
     }
-    
-    public void ajouterMission(Mission uneMission) {
-        this.missions.add(uneMission);
+
+    public void ajouterMission(Mission uneMission) throws affecterPersException {
+        if (this.missions.size() > 0) {
+            for (Mission m : this.missions) {
+
+                Date ddc = m.getDatedeb();
+
+                Date dfc = m.getFin();
+
+                Date dduc = uneMission.getDatedeb();
+
+                Date dfuc = uneMission.getFin();
+
+                if (dduc.after(ddc) && dduc.before(dfc)) {
+                    throw new affecterPersException("La mission est posé pendant une mission existant !");
+                }
+                if (dfuc.after(ddc) && dfuc.before(dfc)) {
+                    throw new affecterPersException("La mission est posé pendant une mission existant !");
+                }
+                if (dduc.before(ddc) && dfuc.after(dfc)) {
+                    throw new affecterPersException("La mission est posé pendant une mission existant !");
+                }
+
+            }
+            this.missions.add(uneMission);
+        } else {
+            this.missions.add(uneMission);
+        }
+
     }
 }

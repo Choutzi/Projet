@@ -104,6 +104,10 @@ public class Mission {
             System.out.println("Equipe au complet");
         }
     }
+    
+    public void removePersonnel(Personnel unPers){
+        this.equipe.remove(unPers);
+    }
 
     /**
      * Si la mission n'a pas encore la compétence dans ça liste de compétence alors l'ajoute
@@ -183,6 +187,7 @@ public class Mission {
             }
 
             this.equipe.add(unePersonne);
+            System.out.println("affecter");
     }
     
     public void setStat(String stat){

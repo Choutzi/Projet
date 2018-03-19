@@ -74,9 +74,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonAjout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonModifMiss" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifPers" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonModifPerso" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifMission" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonSupp" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -97,8 +97,8 @@
                   <Component id="jButtonSupp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonGestionEquipe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonConge" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonModifMiss" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonModifPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifPers" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonModifMission" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,20 +141,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCongeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonModifMiss">
+        <Component class="javax.swing.JButton" name="jButtonModifPers">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifier"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifMissActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifPersActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonModifPerso">
+        <Component class="javax.swing.JButton" name="jButtonModifMission">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifier"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifPersoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifMissionActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -270,29 +270,6 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DefaultTableModel model3 = new DefaultTableModel();&#xa;        model3.addColumn(&quot;ID&quot;);&#xa;        model3.addColumn(&quot;Description Anglaise&quot;);&#xa;        model3.addColumn(&quot;Description Fran&#xe7;aise&quot;);&#xa;        for (Competence c : e.getCompetence()) {&#xa;            String[] line = c.toString().split(&quot;;&quot;);&#xa;            model3.addRow(line);&#xa;        }"/>
-              </AuxValues>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable4">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="model4" type="code"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DefaultTableModel model4 = new DefaultTableModel(); &#xd;&#xa;model3.addColumn(&quot;ID&quot;);       &#xd;&#xa;model3.addColumn(&quot;Description Anglaise&quot;);    &#xd;&#xa;model3.addColumn(&quot;Description Fran&#xe7;aise&quot;);  &#xd;&#xa;for (Competence c : e.getCompetence()) {   &#xd;&#xa;String[] line = c.toString().split(&quot;;&quot;);&#xd;&#xa;model3.addRow(line);    &#xd;&#xa;}"/>
               </AuxValues>
             </Component>
           </SubComponents>

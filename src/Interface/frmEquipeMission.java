@@ -165,6 +165,7 @@ public class frmEquipeMission extends javax.swing.JFrame {
                     try {
                         Personnel p = frmStart.e.existPersonnel(perso[3]);
                         mission.affecterPers(p);
+                        p.ajouterMission(mission);
                     } catch (affecterPersException ex) {
                         JOptionPane jop = new JOptionPane();
                         jop.showMessageDialog(null, ex.getLocalizedMessage(), "Attention", JOptionPane.WARNING_MESSAGE);

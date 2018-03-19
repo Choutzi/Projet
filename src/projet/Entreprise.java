@@ -27,6 +27,40 @@ public class Entreprise {
             Entreprise.ListeCompetence.add(new Competence(comp.get(i)));
         }
     }
+    
+    /**
+     * permet de retrouver une compétence à partir d'une chaine
+     * @param competence
+     * @return 
+     */
+    public Competence getCompetence(Object competence){
+        Competence lacompetence;
+        for (Competence c : ListeCompetence){
+            if(c.toString().equals(competence)){
+                lacompetence = c;
+                return lacompetence;
+            }
+        }
+        return null;
+        
+    }
+    
+    /**
+     * permet de retrouver une mission à partir d'une chaine
+     * @param mission
+     * @return 
+     */
+    public Mission getMission(Object mission){
+        Mission laM;
+        for (Mission m : ListeMission){
+            if(m.toString().equals(mission)){
+                laM = m;
+                return laM;
+            }
+        }
+        return null;
+        
+    }
 
     /**
      * Méthode pour ajouter des missions à partir d'une arraylist à la liste de mission de l'entreprise 
