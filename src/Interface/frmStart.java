@@ -58,6 +58,8 @@ public class frmStart extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jSpinner1 = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -196,6 +198,19 @@ public class frmStart extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
 
         jTabbedPane1.addTab("Compétence", jScrollPane3);
+
+        DefaultTableModel model4 = new DefaultTableModel(); 
+        model3.addColumn("ID");       
+        model3.addColumn("Description Anglaise");    
+        model3.addColumn("Description Française");  
+        for (Competence c : e.getCompetence()) {   
+            String[] line = c.toString().split(";");
+            model3.addRow(line);    
+        }
+        jTable4.setModel(model4);
+        jScrollPane4.setViewportView(jTable4);
+
+        jTabbedPane1.addTab("tab4", jScrollPane4);
 
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -458,10 +473,12 @@ public class frmStart extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 }
