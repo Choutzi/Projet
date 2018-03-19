@@ -49,7 +49,7 @@ public class Mission {
                 this.competences.add(e.existCompetence(ligne[0].substring(1)));
             }
         }
-        this.stat = "Preparation";
+        this.stat = "Préparation";
     }
 
     /**
@@ -77,6 +77,34 @@ public class Mission {
         return this.nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setDescriptif(String descriptif) {
+        this.descriptif = descriptif;
+    }
+
+    public void setDateDeb(Date dateDeb) {
+        this.dateDeb = dateDeb;
+    }
+
+    public void setDuree(int duree) {
+        this.duree = duree;
+    }
+    
+    public String getStat(){
+        return this.stat;
+    }
+    
+    public int getDuree(){
+        return this.duree;
+    }
+    
+    public String getDesc(){
+        return this.descriptif;
+    }
+
     public ArrayList<Competence> getCompetences() {
         return this.competences;
     }
@@ -88,6 +116,8 @@ public class Mission {
     /**
      * 
      * Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
+     * @param liste
+     * @param ent
     */
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
         if (this.getTaille() > this.equipe.size()) {
@@ -101,7 +131,7 @@ public class Mission {
                 }
             }
         } else {
-            System.out.println("Equipe au complet");
+            System.out.println("Equipe au complet : taille "+this.getTaille()+" size equipe"+this.equipe.size());
         }
     }
     
@@ -122,7 +152,7 @@ public class Mission {
     public Date getDatedeb(){return this.dateDeb;}
 
     /**
-     * Méthode permettant à partir d'un ID d'ajouter une compétence existant dans la liste des compétences de l'entriprise dans une mission
+     * Méthode permettant à partir d'un ID d'ajouter une compétence existant dans la liste des compétences de l'entriprise dans une mission faisant parti de la ligne
      * @param c
      * @param e 
      */
@@ -138,6 +168,14 @@ public class Mission {
         }
     }
 
+    public void modifComp(ArrayList<String[]> c, Entreprise e){
+            for (String[] ligne : c) {
+            if (e.existCompetence(ligne[0].substring(1)) != null) {
+                this.competences.add(e.existCompetence(ligne[0].substring(1)));
+            }
+        }
+    }
+    
     @Override
     public String toString() {
         return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat;

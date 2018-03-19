@@ -5,8 +5,10 @@
  */
 package Interface;
 
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import projet.Competence;
+import projet.Mission;
 import projet.Personnel;
 
 /**
@@ -15,11 +17,13 @@ import projet.Personnel;
  */
 public class jComboboxPersonnel extends JComboBox {
 
-    private Competence c;
+    private Mission m;
+    private int row;
 
-    public jComboboxPersonnel(Competence c) {
+    public jComboboxPersonnel(Mission m, int r) {
         super();
-        this.c = c;
+        this.m = m;
+        this.row=r;
         this.populate();
     }
 
@@ -27,11 +31,15 @@ public class jComboboxPersonnel extends JComboBox {
      * Méthode de sélection d'un personnel pour une compétence
      */
     private void populate() {
-        for (Personnel p : frmStart.e.getPersonnel()) {
-            if (p.avoirComp(c)) {
-                this.addItem(p);
+        int tab[]=null;
+        for (int i=0; i<m.getPersonnels().size();i++) {
+            tab[i]=0;
+            for(Competence c : m.getCompetences()){
+                if(frmStart.e.getPersonnel().get(i).avoirComp(c));
+                tab[i]++;
             }
         }
     }
+    
 
 }
