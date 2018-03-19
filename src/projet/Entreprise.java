@@ -19,53 +19,59 @@ public class Entreprise {
     private static ArrayList<Competence> ListeCompetence = new ArrayList<Competence>();
 
     /**
-     * Méthode pour ajouter une compétence à la liste de compétence de l'entreprise
-     * @param comp 
+     * Méthode pour ajouter une compétence à la liste de compétence de
+     * l'entreprise
+     *
+     * @param comp
      */
     public void addCompetence(ArrayList<String[]> comp) {
         for (int i = 0; i < comp.size(); i++) {
             Entreprise.ListeCompetence.add(new Competence(comp.get(i)));
         }
     }
-    
+
     /**
      * permet de retrouver une compétence à partir d'une chaine
+     *
      * @param competence
-     * @return 
+     * @return
      */
-    public Competence getCompetence(Object competence){
+    public Competence getCompetence(Object competence) {
         Competence lacompetence;
-        for (Competence c : ListeCompetence){
-            if(c.toString().equals(competence)){
+        for (Competence c : ListeCompetence) {
+            if (c.toString().equals(competence)) {
                 lacompetence = c;
                 return lacompetence;
             }
         }
         return null;
-        
+
     }
-    
+
     /**
      * permet de retrouver une mission à partir d'une chaine
+     *
      * @param mission
-     * @return 
+     * @return
      */
-    public Mission getMission(Object mission){
+    public Mission getMission(Object mission) {
         Mission laM;
-        for (Mission m : ListeMission){
-            if(m.toString().equals(mission)){
+        for (Mission m : ListeMission) {
+            if (m.toString().equals(mission)) {
                 laM = m;
                 return laM;
             }
         }
         return null;
-        
+
     }
 
     /**
-     * Méthode pour ajouter des missions à partir d'une arraylist à la liste de mission de l'entreprise 
+     * Méthode pour ajouter des missions à partir d'une arraylist à la liste de
+     * mission de l'entreprise
+     *
      * @param mission
-     * @throws ParseException 
+     * @throws ParseException
      */
     public void addMission(ArrayList<String[]> mission) throws ParseException {
         for (int i = 0; i < (mission.size()); i++) {
@@ -75,8 +81,9 @@ public class Entreprise {
 
     /**
      * Méthode pour ajouter le personnel à la liste de personnel de l'entreprise
+     *
      * @param personnel
-     * @throws ParseException 
+     * @throws ParseException
      */
     public void addPersonnel(ArrayList<String[]> personnel) throws ParseException {
         for (int i = 0; i < personnel.size(); i++) {
@@ -85,7 +92,9 @@ public class Entreprise {
     }
 
     /**
-     * Méthode permettant de vérifier si une copétence (son Id) existe bien dans la liste de l'entreprise et de la renvoyer
+     * Méthode permettant de vérifier si une copétence (son Id) existe bien dans
+     * la liste de l'entreprise et de la renvoyer
+     *
      * @param s
      * @return compétence
      */
@@ -99,9 +108,11 @@ public class Entreprise {
     }
 
     /**
-     * Permet de vérifier suivant un identifiant donné si la personne ayant cet identifant existe dans la liste de l'entreprise et la renvoie.
+     * Permet de vérifier suivant un identifiant donné si la personne ayant cet
+     * identifant existe dans la liste de l'entreprise et la renvoie.
+     *
      * @param s
-     * @return personnel 
+     * @return personnel
      */
     public Personnel existPersonnel(String s) {
         for (Personnel per : Entreprise.ListePersonnel) {
@@ -120,37 +131,37 @@ public class Entreprise {
         return Entreprise.ListeMission;
     }
 
-
     public ArrayList<Competence> getCompetence() {
         return Entreprise.ListeCompetence;
     }
-   
 
-   /**
-    * Méthode permettant d'initialiser l'entreprise en remplissant toutes les listes en appelant les méthode du manager de fichier.
-    * @throws ParseException 
-    */
-   public void initEntrprise() throws ParseException{
-       Manager cs=new CSVmanager();
-       //liste des compétences connues dans l'entreprise
-       ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir")+"\\listes\\liste_competences.csv"));
-       //liste des missions connues dans l'entreprise
-       ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
-       //liste des personnes connues dans l'entreprise
-       ArrayList<String[]> listePersonnel=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
-       //liste des ID compétence par ID personne
-       ArrayList<String[]> listeCompPer=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
-       //liste des ID personne par ID Mission
-       ArrayList<String[]> listePerMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
-       //liste des ID compétences par ID Mission
-       ArrayList<String[]> listeCompMiss=cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_mission.csv"));
-       //liste des congés par ID Personnel
-       ArrayList<String[]> listeConge=cs.lecture((System.getProperty("user.dir") + "\\listes\\conge_personnel.csv"));
-       addPersonnel(listePersonnel);
-       addMission(listeMission);
-       addCompetence(listeComp);
-       //pour chaque personne dans l'entreprise on appel la méthode d'ajout de compétences
-       for (Personnel per : Entreprise.ListePersonnel){
+    /**
+     * Méthode permettant d'initialiser l'entreprise en remplissant toutes les
+     * listes en appelant les méthode du manager de fichier.
+     *
+     * @throws ParseException
+     */
+    public void initEntrprise() throws ParseException {
+        Manager cs = new CSVmanager();
+        //liste des compétences connues dans l'entreprise
+        ArrayList<String[]> listeComp = cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
+        //liste des missions connues dans l'entreprise
+        ArrayList<String[]> listeMission = cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
+        //liste des personnes connues dans l'entreprise
+        ArrayList<String[]> listePersonnel = cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_personnel.csv"));
+        //liste des ID compétence par ID personne
+        ArrayList<String[]> listeCompPer = cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_personnel.csv"));
+        //liste des ID personne par ID Mission
+        ArrayList<String[]> listePerMiss = cs.lecture((System.getProperty("user.dir") + "\\listes\\personnel_mission.csv"));
+        //liste des ID compétences par ID Mission
+        ArrayList<String[]> listeCompMiss = cs.lecture((System.getProperty("user.dir") + "\\listes\\competences_mission.csv"));
+        //liste des congés par ID Personnel
+        ArrayList<String[]> listeConge = cs.lecture((System.getProperty("user.dir") + "\\listes\\conge_personnel.csv"));
+        addPersonnel(listePersonnel);
+        addMission(listeMission);
+        addCompetence(listeComp);
+        //pour chaque personne dans l'entreprise on appel la méthode d'ajout de compétences
+        for (Personnel per : Entreprise.ListePersonnel) {
             per.addCompetence(listeCompPer, this);
             per.initConge(listeConge);
         }
@@ -164,6 +175,33 @@ public class Entreprise {
     @Override
     public String toString() {
         return "yo";
+    }
+
+    public ArrayList<Personnel> classePerso(Mission m) {
+        ArrayList<Personnel> tab = ListePersonnel;
+        int mo;
+        int pers1 = 0;
+        int pers2 = 0;
+        for (int i = 0; i < tab.size() - 1; i++) {
+            mo = i;
+            for (int j = i + 1; j < tab.size(); j++) {
+                for (Competence c : m.getCompetences()) {
+                    if (tab.get(mo).avoirComp(c)) {
+                        pers1++;
+                    } else if (tab.get(j).avoirComp(c)) {
+                        pers2++;
+                    }
+                }
+                if (pers2 < pers1) {
+                    mo = j;
+                }
+                //on échange les positions de ai et de aj : 
+                Personnel temp = tab.get(mo);
+                tab.set(mo, tab.get(i));
+                tab.set(i, temp);
+            }
+        }
+        return tab;
     }
 
     /**
@@ -208,7 +246,7 @@ public class Entreprise {
         builder1 = new StringBuilder();
 
         for (Mission m : Entreprise.ListeMission) {
-            builder1.append(m.toString()+"\n");
+            builder1.append(m.toString() + "\n");
             tmp = m.getNom();
             if (!m.getCompetences().isEmpty()) {
                 for (Competence c : m.getCompetences()) {
