@@ -23,7 +23,7 @@ public class jComboboxPersonnel extends JComboBox {
     public jComboboxPersonnel(Mission m, int r) {
         super();
         this.m = m;
-        this.row=r;
+        this.row = r;
         this.populate();
     }
 
@@ -31,15 +31,13 @@ public class jComboboxPersonnel extends JComboBox {
      * Méthode de sélection d'un personnel pour une compétence
      */
     private void populate() {
-        int tab[]=null;
-        for (int i=0; i<m.getPersonnels().size();i++) {
-            tab[i]=0;
-            for(Competence c : m.getCompetences()){
-                if(frmStart.e.getPersonnel().get(i).avoirComp(c));
-                tab[i]++;
+        ArrayList<Personnel> tab = frmStart.e.classePerso(m);
+            if(m.getPersonnels().size()>this.row && m.getPersonnels().get(this.row).getId()!=-1){
+                this.addItem(m.getPersonnels().get(this.row));
             }
+        for(Personnel p : tab){
+            if (p.avoirComp(m.getCompetences().get(this.row)))
+                this.addItem(p);
         }
     }
-    
-
 }

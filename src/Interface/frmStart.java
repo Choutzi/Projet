@@ -7,6 +7,8 @@ package Interface;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -276,10 +278,18 @@ public class frmStart extends javax.swing.JFrame {
             if(m.getFin().before(spinner)){
                 m.setStat("Terminée");
             }else if(m.getDatedeb().before(spinner)){
-                if(m.getPersonnels().size()==m.getTaille()){
+                if(m.getSizeEquipe()==m.getTaille()){
                     m.setStat("EnCours");
                 }else{
-                    System.out.println("Faire méthode de remplissage par défaut si équipe pas faite lors de la date de début");
+                    for(int i=0;i<m.getPersonnels().size();i++){
+                        if (m.getPersonnels().get(i).getId()==-1){
+                            for(Personnel p : frmStart.e.getPersonnel()){
+                                if(p.avoirComp(m.getCompetences().get(i))){
+                                    m.getPersonnels().set(i, p);
+                                }
+                            }
+                        }
+                    }
                     m.setStat("EnCours");
                 }
             }
@@ -399,7 +409,7 @@ public class frmStart extends javax.swing.JFrame {
         for (Mission m : e.getMission()) {
             String[] line = m.toString().split(";");
             ((DefaultTableModel) jTable2.getModel()).addRow(line);
-            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getPersonnels().size()+"/"+m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
+            ((DefaultTableModel) jTable2.getModel()).setValueAt(m.getSizeEquipe()+"/"+m.getTaille(), ((DefaultTableModel) jTable2.getModel()).getRowCount() - 1, 5);
         }
     }
     

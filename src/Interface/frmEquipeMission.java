@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projet.Competence;
@@ -30,9 +33,9 @@ public class frmEquipeMission extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-       /**
-        * méthode permetant de pré remplir les champs de la fenêtre
-        */
+    /**
+     * méthode permetant de pré remplir les champs de la fenêtre
+     */
     private void fillComponents() {
         String[] miss = this.mission.toString().split(";");
         jLabel1.setText(miss[0]);
@@ -151,8 +154,11 @@ public class frmEquipeMission extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
-     * Après avoir validé si la liste de compétence a bien un personnel pour chaqu'une d'entre elle alors l'équipe est enregistrée dans la liste personnel de la mission
-     * @param evt 
+     * Après avoir validé si la liste de compétence a bien un personnel pour
+     * chaqu'une d'entre elle alors l'équipe est enregistrée dans la liste
+     * personnel de la mission
+     *
+     * @param evt
      */
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         jTable1.setCellSelectionEnabled(true);
@@ -173,11 +179,16 @@ public class frmEquipeMission extends javax.swing.JFrame {
                     }
                 }
             } else {
-                System.out.println("Le champ est vide");
+                try {
+                    mission.getPersonnels().add(new Personnel(new String[]{"Vide", "Vide", "00/00/00", "-1"}));
+                } catch (ParseException ex) {
+                    Logger.getLogger(frmEquipeMission.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        if(mission.getStat()=="Préparation")
+        if (mission.getStat() == "Préparation") {
             mission.setStat("Planifiée");
+        }
         frmStart.f.majMission();
         dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed

@@ -35,7 +35,7 @@ public class PersonnelComboRenderer extends AbstractCellEditor implements
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        //j = new jComboboxPersonnel(m.getCompetences().get(row));
+        j = new jComboboxPersonnel(m,row);
         j.setEditable(true);
         return (j);
     }

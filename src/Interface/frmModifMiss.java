@@ -217,7 +217,7 @@ public class frmModifMiss extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAnnActionPerformed
 
     /**
-     * Méthode permettant, à la validation de modification, de modifier une mission existante
+     * Méthode permettant, à la validation de modification, de modifier une mission existante en appuyant sur le bouton valider
      * @param evt 
      */
     private void jButtonValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValActionPerformed

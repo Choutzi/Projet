@@ -60,9 +60,6 @@ public class Personnel {
         return entree;
     }
 
-    public int getIdentifiant() {
-        return identifiant;
-    }
 
     public ArrayList<Competence> getCompetences() {
         return competences;
@@ -361,7 +358,6 @@ public class Personnel {
         } else {
             this.missions.add(uneMission);
         }
-
     }
     
     

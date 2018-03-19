@@ -247,4 +247,13 @@ public class Mission {
     public void setStat(String stat) {
         this.stat = stat;
     }
+    
+    public int getSizeEquipe(){
+        int i = 0;
+        for (Personnel p : equipe){
+            if (p.getId()!=-1)
+                i++;
+        }
+        return i;
+    }
 }
