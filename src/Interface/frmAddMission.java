@@ -22,7 +22,6 @@ public class frmAddMission extends javax.swing.JFrame {
     /**
      * Creates new form frmAddMission
      */
-    
     public frmAddMission() {
         initComponents();
         this.setLocationRelativeTo(null);

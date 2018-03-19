@@ -32,12 +32,13 @@ public class Mission {
 
     /**
      * Création d'une mission ainsi que l'ajout de compétence requise
+     *
      * @param nom
      * @param descriptif
      * @param dateDeb
      * @param duree
      * @param c
-     * @param e 
+     * @param e
      */
     public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) {
         this.nom = nom;
@@ -54,8 +55,9 @@ public class Mission {
 
     /**
      * Création d'une mission avec des données de type String
+     *
      * @param mission
-     * @throws ParseException 
+     * @throws ParseException
      */
     public Mission(String[] mission) throws ParseException {
         this.nom = mission[0];
@@ -67,6 +69,7 @@ public class Mission {
 
     /**
      * Permet d'obtenir le nombre de compétence requise pour la mission
+     *
      * @return int
      */
     public int getTaille() {
@@ -92,16 +95,16 @@ public class Mission {
     public void setDuree(int duree) {
         this.duree = duree;
     }
-    
-    public String getStat(){
+
+    public String getStat() {
         return this.stat;
     }
-    
-    public int getDuree(){
+
+    public int getDuree() {
         return this.duree;
     }
-    
-    public String getDesc(){
+
+    public String getDesc() {
         return this.descriptif;
     }
 
@@ -114,11 +117,13 @@ public class Mission {
     }
 
     /**
-     * 
-     * Initialisation des missions et de leur personnel à partir du fichier csv mission_personnel(idMission : idPers)
+     *
+     * Initialisation des missions et de leur personnel à partir du fichier csv
+     * mission_personnel(idMission : idPers)
+     *
      * @param liste
      * @param ent
-    */
+     */
     public void addPersonnel(ArrayList<String[]> liste, Entreprise ent) {
         if (this.getTaille() > this.equipe.size()) {
             for (String[] Misseq : liste) {
@@ -131,30 +136,42 @@ public class Mission {
                 }
             }
         } else {
-            System.out.println("Equipe au complet : taille "+this.getTaille()+" size equipe"+this.equipe.size());
+            System.out.println("Equipe au complet : taille " + this.getTaille() + " size equipe" + this.equipe.size());
         }
     }
-    
-    public void removePersonnel(Personnel unPers){
+
+    /**
+     * enlève un personnel de la liste de personnel
+     *
+     * @param unPers
+     */
+    public void removePersonnel(Personnel unPers) {
         this.equipe.remove(unPers);
     }
 
     /**
-     * Si la mission n'a pas encore la compétence dans ça liste de compétence alors l'ajoute
-     * @param c 
+     * Si la mission n'a pas encore la compétence dans ça liste de compétence
+     * alors l'ajoute
+     *
+     * @param c
      */
     public void ajoutCompetence(Competence c) {
         if (!this.competences.contains(c)) {
             this.competences.add(c);
         }
     }
-    
-    public Date getDatedeb(){return this.dateDeb;}
+
+    public Date getDatedeb() {
+        return this.dateDeb;
+    }
 
     /**
-     * Méthode permettant à partir d'un ID d'ajouter une compétence existant dans la liste des compétences de l'entriprise dans une mission faisant parti de la ligne
+     * Méthode permettant à partir d'un ID d'ajouter une compétence existant
+     * dans la liste des compétences de l'entriprise dans une mission faisant
+     * parti de la ligne
+     *
      * @param c
-     * @param e 
+     * @param e
      */
     public void ajoutCompetence(ArrayList<String[]> c, Entreprise e) {
         for (String[] ligne : c) {
@@ -168,22 +185,22 @@ public class Mission {
         }
     }
 
-    public void modifComp(ArrayList<String[]> c, Entreprise e){
-            for (String[] ligne : c) {
+    public void modifComp(ArrayList<String[]> c, Entreprise e) {
+        for (String[] ligne : c) {
             if (e.existCompetence(ligne[0].substring(1)) != null) {
                 this.competences.add(e.existCompetence(ligne[0].substring(1)));
             }
         }
     }
-    
+
     @Override
     public String toString() {
         return this.nom + ";" + this.descriptif + ";" + (new SimpleDateFormat("dd/MM/yyyy").format(this.dateDeb)) + ";" + this.duree + ";" + this.stat;
     }
 
-    
     /**
      * Méthode permettant d'obtenir la date de fin d'une mission
+     *
      * @return Date
      */
     public Date getFin() {
@@ -201,34 +218,33 @@ public class Mission {
      * congés du Personnel
      */
     public void affecterPers(Personnel unePersonne) throws affecterPersException {
-            //si pour chaque congé de la personne
-            for (Conge unConge : unePersonne.getConges()) {
-                //date début congé
-                Date ddc = unConge.getDateDeb();
-                //date fin congé
-                Date dfc = unConge.getFin();
-                //date début mission
-                Date ddm = this.dateDeb;
-                //date fin mission
-                Date dfm = this.getFin();
+        //si pour chaque congé de la personne
+        for (Conge unConge : unePersonne.getConges()) {
+            //date début congé
+            Date ddc = unConge.getDateDeb();
+            //date fin congé
+            Date dfc = unConge.getFin();
+            //date début mission
+            Date ddm = this.dateDeb;
+            //date fin mission
+            Date dfm = this.getFin();
 
-                
-                if (ddm.after(ddc) && dfm.before(dfc)) {
-                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
-                }
-                if (dfm.after(ddc) && dfm.before(dfc)) {
-                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
-                }
-                if(ddm.before(ddc) && dfm.after(dfc)) {
-                    throw new affecterPersException("Le congé est posé pendant un congé existant !");
-                }
+            if (ddm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
             }
+            if (dfm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
+            }
+            if (ddm.before(ddc) && dfm.after(dfc)) {
+                throw new affecterPersException("Le congé est posé pendant un congé existant !");
+            }
+        }
 
-            this.equipe.add(unePersonne);
-            System.out.println("affecter");
+        this.equipe.add(unePersonne);
+        System.out.println("affecter");
     }
-    
-    public void setStat(String stat){
-        this.stat=stat;
+
+    public void setStat(String stat) {
+        this.stat = stat;
     }
 }

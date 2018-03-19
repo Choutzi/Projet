@@ -284,10 +284,38 @@ public class Personnel {
     public ArrayList<Competence> getCompetence() {
         return this.competences;
     }
+    
+    
+    public boolean etreOccupe(Date datedeb, Date datefin){
+        boolean occupe = false;
+        for (Conge unConge : this.conges) {
+            //date début congé
+            Date ddc = unConge.getDateDeb();
+            //date fin congé
+            Date dfc = unConge.getFin();
 
+            if (datedeb.after(ddc) && datefin.before(dfc)) {
+                occupe = true;
+            }
+            if (datefin.after(ddc) && datefin.before(dfc)) {
+                occupe = true;
+            }
+            if (datedeb.before(ddc) && datefin.after(dfc)) {
+                occupe = true;
+            }
+        }
+        return occupe;
+    }
+
+    /**
+     * ajoute une mission à cette personne
+     * @param uneMission
+     * @throws affecterPersException 
+     */
     public void ajouterMission(Mission uneMission) throws affecterPersException {
 
         for (Conge unConge : this.conges) {
+            
             //date début congé
             Date ddc = unConge.getDateDeb();
             //date fin congé
@@ -335,4 +363,6 @@ public class Personnel {
         }
 
     }
+    
+    
 }
