@@ -99,7 +99,7 @@ public class Entreprise {
    public void initEntrprise() throws ParseException{
        Manager cs=new CSVmanager();
        //liste des compétences connues dans l'entreprise
-       ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_competences.csv"));
+       ArrayList<String[]> listeComp=cs.lecture((System.getProperty("user.dir")+"\\listes\\liste_competences.csv"));
        //liste des missions connues dans l'entreprise
        ArrayList<String[]> listeMission=cs.lecture((System.getProperty("user.dir") + "\\listes\\liste_missions.csv"));
        //liste des personnes connues dans l'entreprise
@@ -120,10 +120,10 @@ public class Entreprise {
             per.addCompetence(listeCompPer, this);
             per.initConge(listeConge);
         }
-        //pour chaque mission dans l'entreprise on appel la méthode d'ajout de personnel
+        //pour chaque mission dans l'entreprise on appel la méthode d'ajout de compétence et de personnel
         for (Mission mis : Entreprise.ListeMission) {
-            mis.addPersonnel(listePerMiss, this);
             mis.ajoutCompetence(listeCompMiss, this);
+            mis.addPersonnel(listePerMiss, this);
         }
     }
 
@@ -186,6 +186,7 @@ public class Entreprise {
             if (!m.getPersonnels().isEmpty()) {
                 for (Personnel p : m.getPersonnels()) {
                     tmp = tmp + ";" + p.getId();
+                    System.out.println(p.getId());
                 }
                 builder3.append(tmp + "\n");
             }

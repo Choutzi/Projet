@@ -350,7 +350,15 @@ public class frmStart extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void jButtonModifMissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifMissActionPerformed
-        // TODO add your handling code here:
+        int i=jTable2.getSelectedRow();
+        if (i!=-1){
+            //on lance la modification de la mission si l'utilisateur a bien sélectionné une mission dans la liste
+            new frmModifMiss(i).setVisible(true);
+        }else{
+            //message warning si aucune sélection
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Veuillez sélectionner une mission à modifier", "Attention", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonModifMissActionPerformed
 
     private void jScrollPane2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jScrollPane2PropertyChange
