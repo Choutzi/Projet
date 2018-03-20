@@ -34,7 +34,10 @@ public class frmModifPers extends javax.swing.JFrame {
      * Creates new form ModifPers
      */
     public frmModifPers(int idPers) {
-        this.perso = frmStart.e.getPersonnel().get(idPers);
+        for (Personnel p : frmStart.e.getPersonnel()){
+            if (p.getId()==idPers+1)
+                this.perso=p;
+        }
         initComponents();
         fillComponents();
         this.MajComponents();
@@ -299,7 +302,8 @@ public class frmModifPers extends javax.swing.JFrame {
             competences.add(macomp);
         }
         perso.setCompetences(competences);
-
+        frmStart.f.majMission();
+        
         //on recharge la liste des missions
 //        ArrayList<Conge> conges = new ArrayList();
 //        for (int i = 0; i < jList2.getModel().getSize(); i++) {

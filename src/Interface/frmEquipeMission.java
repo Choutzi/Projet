@@ -163,6 +163,11 @@ public class frmEquipeMission extends javax.swing.JFrame {
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         jTable1.setCellSelectionEnabled(true);
         jTable1.changeSelection(0, 0, false, false);
+        for (Personnel p : mission.getPersonnels()) {
+            if (p.getId() != -1) {
+                p.removeMission(mission);
+            }
+        }
         this.mission.getPersonnels().clear();
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             if (jTable1.getValueAt(i, 3) != null) {
@@ -172,7 +177,7 @@ public class frmEquipeMission extends javax.swing.JFrame {
                         Personnel p = frmStart.e.existPersonnel(perso[3]);
                         p.ajouterMission(mission);
                         mission.affecterPers(p);
-                        
+
                     } catch (affecterPersException ex) {
                         JOptionPane jop = new JOptionPane();
                         jop.showMessageDialog(null, ex.getLocalizedMessage(), "Attention", JOptionPane.WARNING_MESSAGE);
