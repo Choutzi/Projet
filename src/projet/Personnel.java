@@ -301,6 +301,25 @@ public class Personnel {
                 occupe = true;
             }
         }
+        for (Mission m : this.missions) {
+
+                Date ddc = m.getDatedeb();
+
+                Date dfc = m.getFin();
+                
+                System.out.println(dfc);
+
+                if (datedeb.after(ddc) && datefin.before(dfc)) {
+                    occupe = true;
+                }
+                if (datefin.after(ddc) && datefin.before(dfc)) {
+                    occupe = true;
+                }
+                if (datedeb.before(ddc) && datefin.after(dfc)) {
+                    occupe = true;
+                }
+
+            }
         return occupe;
     }
 
@@ -311,53 +330,11 @@ public class Personnel {
      */
     public void ajouterMission(Mission uneMission) throws affecterPersException {
 
-        for (Conge unConge : this.conges) {
-            
-            //date début congé
-            Date ddc = unConge.getDateDeb();
-            //date fin congé
-            Date dfc = unConge.getFin();
-            //date début mission
-            Date ddm = uneMission.getDatedeb();
-            //date fin mission
-            Date dfm = uneMission.getFin();
-
-            if (ddm.after(ddc) && dfm.before(dfc)) {
-                throw new affecterPersException("Le congé est posé pendant un congé existant !");
-            }
-            if (dfm.after(ddc) && dfm.before(dfc)) {
-                throw new affecterPersException("Le congé est posé pendant un congé existant !");
-            }
-            if (ddm.before(ddc) && dfm.after(dfc)) {
-                throw new affecterPersException("Le congé est posé pendant un congé existant !");
-            }
+        if(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin())){
+            throw new affecterPersException("La période n'est pas disponible (congé ou mission en cours)");
         }
-        if (this.missions.size() > 0) {
-            for (Mission m : this.missions) {
-
-                Date ddc = m.getDatedeb();
-
-                Date dfc = m.getFin();
-
-                Date dduc = uneMission.getDatedeb();
-
-                Date dfuc = uneMission.getFin();
-
-                if (dduc.after(ddc) && dduc.before(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
-                }
-                if (dfuc.after(ddc) && dfuc.before(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
-                }
-                if (dduc.before(ddc) && dfuc.after(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
-                }
-
-            }
-            this.missions.add(uneMission);
-        } else {
-            this.missions.add(uneMission);
-        }
+        System.out.println("ajouter");
+        this.missions.add(uneMission);
     }
     
     
