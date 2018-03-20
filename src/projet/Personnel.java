@@ -286,9 +286,10 @@ public class Personnel {
 
     /**
      * renvoie true si la personne est occupée pendant la période
+     *
      * @param datedeb
      * @param datefin
-     * @return 
+     * @return
      */
     public boolean etreOccupe(Date datedeb, Date datefin) {
         boolean occupe = false;
@@ -342,72 +343,67 @@ public class Personnel {
      * @param uneMission
      * @throws affecterPersException
      */
+//    public void ajouterMission(Mission uneMission) throws affecterPersException {
+//        for (Conge unConge : this.conges) {
+//
+//            //date début congé
+//            Date ddc = unConge.getDateDeb();
+//            //date fin congé
+//            Date dfc = unConge.getFin();
+//            //date début mission
+//            Date ddm = uneMission.getDatedeb();
+//            //date fin mission
+//            Date dfm = uneMission.getFin();
+//
+//            if (ddm.after(ddc) && dfm.before(dfc)) {
+//                throw new affecterPersException("La mission est posée pendant un congé existant !");
+//            }
+//            if (dfm.after(ddc) && dfm.before(dfc)) {
+//                throw new affecterPersException("La mission est posée pendant un congé existant !");
+//            }
+//            if (ddm.before(ddc) && dfm.after(dfc)) {
+//                throw new affecterPersException("La mission est posée pendant un congé existant !");
+//            }
+//        }
+//        if (this.missions.size() > 0) {
+//            for (Mission m : this.missions) {
+//
+//                Date ddc = m.getDatedeb();
+//
+//                Date dfc = m.getFin();
+//
+//                System.out.println(dfc);
+//
+//                Date dduc = uneMission.getDatedeb();
+//
+//                Date dfuc = uneMission.getFin();
+//                
+//                if (m.getStat().equals("EnCours")) {
+//                    if (dduc.after(ddc) && dduc.before(dfc)) {
+//                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+//                    }
+//                    if (dfuc.after(ddc) && dfuc.before(dfc)) {
+//                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+//                    }
+//                    if (dduc.before(ddc) && dfuc.after(dfc)) {
+//                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+//                    }
+//                }
+//
+//            }
+//        }
+    /**
+     * ajoute une mission à cette personne
+     *
+     * @param uneMission
+     * @throws affecterPersException
+     */
     public void ajouterMission(Mission uneMission) throws affecterPersException {
 
-        System.out.println(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin()));
-        
-        for (Conge unConge : this.conges) {
-
-            //date début congé
-            Date ddc = unConge.getDateDeb();
-            //date fin congé
-            Date dfc = unConge.getFin();
-            //date début mission
-            Date ddm = uneMission.getDatedeb();
-            //date fin mission
-            Date dfm = uneMission.getFin();
-
-            if (ddm.after(ddc) && dfm.before(dfc)) {
-                throw new affecterPersException("La mission est posée pendant un congé existant !");
-            }
-            if (dfm.after(ddc) && dfm.before(dfc)) {
-                throw new affecterPersException("La mission est posée pendant un congé existant !");
-            }
-            if (ddm.before(ddc) && dfm.after(dfc)) {
-                throw new affecterPersException("La mission est posée pendant un congé existant !");
-            }
+        if (this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin())) {
+            throw new affecterPersException("La période n'est pas disponible (congé ou mission en cours)");
         }
-        if (this.missions.size() > 0) {
-            for (Mission m : this.missions) {
-
-                Date ddc = m.getDatedeb();
-
-                Date dfc = m.getFin();
-
-                System.out.println(dfc);
-
-                Date dduc = uneMission.getDatedeb();
-
-                Date dfuc = uneMission.getFin();
-                
-                if (m.getStat().equals("EnCours")) {
-                    if (dduc.after(ddc) && dduc.before(dfc)) {
-                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
-                    }
-                    if (dfuc.after(ddc) && dfuc.before(dfc)) {
-                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
-                    }
-                    if (dduc.before(ddc) && dfuc.after(dfc)) {
-                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
-                    }
-                }
-
-            }
-        }
-
-        /**
-         * ajoute une mission à cette personne
-         *
-         * @param uneMission
-         * @throws affecterPersException
-         */
-//    public void ajouterMission(Mission uneMission) throws affecterPersException {
-//
-//        if(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin())){
-//            throw new affecterPersException("La période n'est pas disponible (congé ou mission en cours)");
-//        }
-//        System.out.println("ajouter");
-//        this.missions.add(uneMission);
-//    }
+        System.out.println("ajouter");
+        this.missions.add(uneMission);
     }
 }
