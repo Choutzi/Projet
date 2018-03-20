@@ -268,6 +268,11 @@ public class frmStart extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Les modification ont bien été enregistrées", "Enregistrer", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_EnregistrerMouseClicked
 
+    
+    /**
+     * Méthode mettant à jour le statut des mission suivant le jour courant (spinner) la méthode fait aussi la gestion des équipes de la mission suivant les compétences et les occupation du personnel
+     * @param evt 
+     */
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         Date day = new Date();
         Date spinner = (Date) jSpinner1.getValue();
@@ -275,16 +280,24 @@ public class frmStart extends javax.swing.JFrame {
             jSpinner1.setValue(day);
         }
         for (Mission m : e.getMission()){
+            for (Personnel p : m.getPersonnels()){
+                if(p.etreOccupe(m.getDatedeb(), m.getFin()))
+                    try {
+                        m.getPersonnels().set(m.getPersonnels().indexOf(p), new Personnel(new String[]{"Vide", "Vide", "00/00/00", "-1"}));
+                } catch (ParseException ex) {
+                    Logger.getLogger(frmStart.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             if(m.getFin().before(spinner)){
                 m.setStat("Terminée");
             }else if(m.getDatedeb().before(spinner)){
-                if(m.getSizeEquipe()==m.getTaille()){
+                if(m.getSizeEquipe()==m.getTaille()){ 
                     m.setStat("EnCours");
                 }else{
                     for(int i=0;i<m.getPersonnels().size();i++){
                         if (m.getPersonnels().get(i).getId()==-1){
                             for(Personnel p : frmStart.e.getPersonnel()){
-                                if(p.avoirComp(m.getCompetences().get(i))){
+                                if(p.avoirComp(m.getCompetences().get(i)) && !p.etreOccupe(m.getDatedeb(), m.getFin())){
                                     m.getPersonnels().set(i, p);
                                 }
                             }
@@ -465,7 +478,7 @@ public class frmStart extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Enregistrer;
     private javax.swing.JButton jButtonAjout;

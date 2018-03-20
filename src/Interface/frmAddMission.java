@@ -5,8 +5,11 @@
  */
 package Interface;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import projet.Competence;
@@ -99,12 +102,6 @@ public class frmAddMission extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -222,8 +219,12 @@ public class frmAddMission extends javax.swing.JFrame {
         }else if(contlist[0].equals("[]")){
             jop.showMessageDialog(null, "Veuillez choisir les compétences requises pour la mission", "Attention", JOptionPane.WARNING_MESSAGE);
         }else{
-            //on ajoute la mission à la liste des missions de l'entreprise et on met à jour le tableau de mission dans frmStart
-            frmStart.e.getMission().add(new Mission(TFIntitule.getText(),TAdesc.getText(),(Date)jSpinnerdatedeb.getValue(),(int)jSpinner1.getValue(),contenuList, frmStart.e));
+            try {
+                //on ajoute la mission à la liste des missions de l'entreprise et on met à jour le tableau de mission dans frmStart
+                frmStart.e.getMission().add(new Mission(TFIntitule.getText(),TAdesc.getText(),(Date)jSpinnerdatedeb.getValue(),(int)jSpinner1.getValue(),contenuList, frmStart.e));
+            } catch (ParseException ex) {
+                Logger.getLogger(frmAddMission.class.getName()).log(Level.SEVERE, null, ex);
+            }
             frmStart.f.majMission();
             dispose();
         }
@@ -266,11 +267,6 @@ public class frmAddMission extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * Méthode permettant de mettre à jour la combobox avec la liste de compétence existante
