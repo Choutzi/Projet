@@ -302,7 +302,6 @@ public class frmStart extends javax.swing.JFrame {
                                 if(p.avoirComp(m.getCompetences().get(i)) && !p.etreOccupe(m.getDatedeb(), m.getFin()) && !estPris){
                                     m.getPersonnels().set(i, p);
                                     estPris=true;
-                                    System.out.println(p);
                                     try {
                                         m.getPersonnels().get(i).ajouterMission(m);
                                     } catch (affecterPersException ex) {
