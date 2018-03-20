@@ -455,6 +455,10 @@ public class frmStart extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Méthode permettant d'obtenir la date courante du frmStart
+     * @return Date
+     */
     public Date getDate(){
         return (Date)this.jSpinner1.getValue();
     }
