@@ -72,6 +72,11 @@ public class frmAddMission extends javax.swing.JFrame {
         jLabel3.setText("Date de début :");
 
         jSpinnerdatedeb.setModel(new javax.swing.SpinnerDateModel());
+        jSpinnerdatedeb.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerdatedebStateChanged(evt);
+            }
+        });
 
         jLabel4.setText("Durée (jour):");
 
@@ -268,6 +273,11 @@ public class frmAddMission extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jSpinnerdatedebStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerdatedebStateChanged
+        if(((Date)this.jSpinnerdatedeb.getValue()).before(frmStart.f.getDate()))
+            this.jSpinnerdatedeb.setValue(frmStart.f.getDate());
+    }//GEN-LAST:event_jSpinnerdatedebStateChanged
+
     /**
      * Méthode permettant de mettre à jour la combobox avec la liste de compétence existante
      */
@@ -276,6 +286,7 @@ public class frmAddMission extends javax.swing.JFrame {
         for (int i=0; i<frmStart.e.getCompetence().size();i++){
                 jComboBox1.addItem(frmStart.e.getCompetence().get(i).toString());
         }
+        this.jSpinnerdatedeb.setValue(frmStart.f.getDate());
     }
 
 

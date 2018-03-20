@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import projet.Competence;
 import projet.Mission;
+import projet.Personnel;
 
 /**
  *
@@ -54,6 +55,9 @@ public class frmModifMiss extends javax.swing.JFrame {
         jButtonVal = new javax.swing.JButton();
         jSpinnerDuree = new javax.swing.JSpinner();
         jLabelStat = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListEq = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,6 +114,11 @@ public class frmModifMiss extends javax.swing.JFrame {
         jLabelStat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelStat.setText("Statut");
 
+        jLabel1.setText("Equipe :");
+
+        jListEq.setModel(new DefaultListModel ());
+        jScrollPane1.setViewportView(jListEq);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +130,7 @@ public class frmModifMiss extends javax.swing.JFrame {
                         .addComponent(jLabelId)
                         .addGap(160, 160, 160)
                         .addComponent(jLabelStat)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSpinnerDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,23 +142,26 @@ public class frmModifMiss extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButtonSuppComp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonComp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldDesc)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-                            .addComponent(jComboBoxComp, 0, 613, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAnn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonVal)))
+                            .addComponent(jLabel2)
+                            .addComponent(jButtonAnn)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextFieldDesc)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxComp, 0, 613, Short.MAX_VALUE))
+                                    .addComponent(jButtonVal))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelId)
                     .addComponent(jSpinnerDatedeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,13 +183,15 @@ public class frmModifMiss extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSuppComp))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jButtonAnn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonVal))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAnn)
+                    .addComponent(jButtonVal))
+                .addContainerGap())
         );
 
         pack();
@@ -282,6 +296,13 @@ public class frmModifMiss extends javax.swing.JFrame {
         for (int i = 0; i < frmStart.e.getCompetence().size(); i++) {
             jComboBoxComp.addItem(frmStart.e.getCompetence().get(i).toString());
         }
+        
+        //maj equipe
+        for (Personnel p : this.mi.getPersonnels()) {
+            if (p.getId()!=-1)
+                ((DefaultListModel) jListEq.getModel()).addElement(p.toString());
+        }
+        
         if (!this.mi.getStat().equals("Préparation") && !this.mi.getStat().equals("Planifiée")) {
             this.jButtonComp.setEnabled(false);
             this.jButtonSuppComp.setEnabled(false);
@@ -300,12 +321,15 @@ public class frmModifMiss extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSuppComp;
     private javax.swing.JButton jButtonVal;
     private javax.swing.JComboBox<String> jComboBoxComp;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelStat;
     private javax.swing.JList<String> jListComp;
+    private javax.swing.JList<String> jListEq;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinnerDatedeb;
     private javax.swing.JSpinner jSpinnerDuree;

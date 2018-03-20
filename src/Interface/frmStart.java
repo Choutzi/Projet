@@ -455,6 +455,10 @@ public class frmStart extends javax.swing.JFrame {
         }
     }
     
+    public Date getDate(){
+        return (Date)this.jSpinner1.getValue();
+    }
+    
     /**
      * @param args the command line arguments
      */
