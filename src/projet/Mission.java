@@ -29,6 +29,7 @@ public class Mission {
         Preparation, Planifiee, EnCours, Terminee
     };
     private String stat;
+    private statut statu;
 
     /**
      * Création d'une mission ainsi que l'ajout de compétence requise
@@ -40,7 +41,7 @@ public class Mission {
      * @param c
      * @param e
      */
-    public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) {
+    public Mission(String nom, String descriptif, Date dateDeb, int duree, ArrayList<String[]> c, Entreprise e) throws ParseException {
         this.nom = nom;
         this.descriptif = descriptif;
         this.dateDeb = dateDeb;
@@ -48,6 +49,7 @@ public class Mission {
         for (String[] ligne : c) {
             if (e.existCompetence(ligne[0].substring(1)) != null) {
                 this.competences.add(e.existCompetence(ligne[0].substring(1)));
+                this.equipe.add(new Personnel(new String[]{"Vide", "Vide", "00/00/00", "-1"}));
             }
         }
         this.stat = "Préparation";

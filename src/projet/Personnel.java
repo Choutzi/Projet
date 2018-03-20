@@ -60,7 +60,6 @@ public class Personnel {
         return entree;
     }
 
-
     public ArrayList<Competence> getCompetences() {
         return competences;
     }
@@ -171,20 +170,22 @@ public class Personnel {
 
     /**
      * On enlève la compétence de la liste des compétences
+     *
      * @param comp
      */
     public void removeComp(Competence comp, Entreprise e) {
         this.competences.remove(comp);
-        
+
         for (Mission m : this.missions) {
             for (Competence c : this.competences) {
-                if(m.getCompetences().contains(comp)){
+                if (m.getCompetences().contains(comp)) {
                     m.removePersonnel(this);
                     Mission me = e.getMission(m);
                     me.removePersonnel(this);
-                    if(!m.getPersonnels().contains(this))
+                    if (!m.getPersonnels().contains(this)) {
                         this.missions.remove(m);
-                    
+                    }
+
                 }
             }
         }
@@ -228,6 +229,7 @@ public class Personnel {
      * @throws poserCongeException
      */
     public void poserConge(Conge unConge) throws poserCongeException {
+        System.out.println(this.etreOccupe(unConge.getDateDeb(), unConge.getFin()));
         if (this.conges.size() > 0) {
             System.out.println(this.conges.size());
             for (Conge co : this.conges) {
@@ -281,9 +283,14 @@ public class Personnel {
     public ArrayList<Competence> getCompetence() {
         return this.competences;
     }
-    
-    
-    public boolean etreOccupe(Date datedeb, Date datefin){
+
+    /**
+     * renvoie true si la personne est occupée pendant la période
+     * @param datedeb
+     * @param datefin
+     * @return 
+     */
+    public boolean etreOccupe(Date datedeb, Date datefin) {
         boolean occupe = false;
         for (Conge unConge : this.conges) {
             //date début congé
@@ -303,39 +310,104 @@ public class Personnel {
         }
         for (Mission m : this.missions) {
 
+            if (m.getStat().equals("EnCours")) {
                 Date ddc = m.getDatedeb();
 
                 Date dfc = m.getFin();
-                
+
                 System.out.println(dfc);
 
-                if (datedeb.after(ddc) && datefin.before(dfc)) {
-                    occupe = true;
-                }
-                if (datefin.after(ddc) && datefin.before(dfc)) {
-                    occupe = true;
-                }
-                if (datedeb.before(ddc) && datefin.after(dfc)) {
-                    occupe = true;
-                }
+                Date dduc = datedeb;
 
+                Date dfuc = datefin;
+
+                if (dduc.after(ddc) && dduc.before(dfc)) {
+                    occupe = true;
+                }
+                if (dfuc.after(ddc) && dfuc.before(dfc)) {
+                    occupe = true;
+                }
+                if (dduc.before(ddc) && dfuc.after(dfc)) {
+                    occupe = true;
+                }
             }
+        }
+
         return occupe;
     }
 
     /**
      * ajoute une mission à cette personne
+     *
      * @param uneMission
-     * @throws affecterPersException 
+     * @throws affecterPersException
      */
     public void ajouterMission(Mission uneMission) throws affecterPersException {
 
-        if(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin())){
-            throw new affecterPersException("La période n'est pas disponible (congé ou mission en cours)");
+        System.out.println(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin()));
+        
+        for (Conge unConge : this.conges) {
+
+            //date début congé
+            Date ddc = unConge.getDateDeb();
+            //date fin congé
+            Date dfc = unConge.getFin();
+            //date début mission
+            Date ddm = uneMission.getDatedeb();
+            //date fin mission
+            Date dfm = uneMission.getFin();
+
+            if (ddm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("La mission est posée pendant un congé existant !");
+            }
+            if (dfm.after(ddc) && dfm.before(dfc)) {
+                throw new affecterPersException("La mission est posée pendant un congé existant !");
+            }
+            if (ddm.before(ddc) && dfm.after(dfc)) {
+                throw new affecterPersException("La mission est posée pendant un congé existant !");
+            }
         }
-        System.out.println("ajouter");
-        this.missions.add(uneMission);
+        if (this.missions.size() > 0) {
+            for (Mission m : this.missions) {
+
+                Date ddc = m.getDatedeb();
+
+                Date dfc = m.getFin();
+
+                System.out.println(dfc);
+
+                Date dduc = uneMission.getDatedeb();
+
+                Date dfuc = uneMission.getFin();
+                
+                if (m.getStat().equals("EnCours")) {
+                    if (dduc.after(ddc) && dduc.before(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+                    }
+                    if (dfuc.after(ddc) && dfuc.before(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+                    }
+                    if (dduc.before(ddc) && dfuc.after(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission en cours !");
+                    }
+                }
+
+            }
+        }
+
+        /**
+         * ajoute une mission à cette personne
+         *
+         * @param uneMission
+         * @throws affecterPersException
+         */
+//    public void ajouterMission(Mission uneMission) throws affecterPersException {
+//
+//        if(this.etreOccupe(uneMission.getDatedeb(), uneMission.getFin())){
+//            throw new affecterPersException("La période n'est pas disponible (congé ou mission en cours)");
+//        }
+//        System.out.println("ajouter");
+//        this.missions.add(uneMission);
+//    }
     }
-    
-    
 }

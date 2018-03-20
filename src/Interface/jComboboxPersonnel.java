@@ -32,11 +32,11 @@ public class jComboboxPersonnel extends JComboBox {
      */
     private void populate() {
         ArrayList<Personnel> tab = frmStart.e.classePerso(m);
-            if(m.getPersonnels().size()>this.row && m.getPersonnels().get(this.row).getId()!=-1){
+            if(m.getPersonnels().size()>this.row && m.getPersonnels().get(this.row).getId()!=-1 && !m.getPersonnels().get(this.row).etreOccupe(m.getDatedeb(), m.getFin())){
                 this.addItem(m.getPersonnels().get(this.row));
             }
         for(Personnel p : tab){
-            if (p.avoirComp(m.getCompetences().get(this.row)))
+            if (p.avoirComp(m.getCompetences().get(this.row)) && !p.etreOccupe(m.getDatedeb(), m.getFin()))
                 this.addItem(p);
         }
     }
