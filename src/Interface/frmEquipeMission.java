@@ -191,7 +191,7 @@ public class frmEquipeMission extends javax.swing.JFrame {
                 }
             }
         }
-        if (mission.getStat().equals("Préparation")) {
+        if (mission.getStat().equals("Préparation") && mission.getSizeEquipe()==mission.getTaille()) {
             mission.setStat("Planifiée");
         }
         frmStart.f.majMission();
