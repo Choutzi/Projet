@@ -60,7 +60,6 @@ public class Personnel {
         return entree;
     }
 
-
     public ArrayList<Competence> getCompetences() {
         return competences;
     }
@@ -171,20 +170,22 @@ public class Personnel {
 
     /**
      * On enlève la compétence de la liste des compétences
+     *
      * @param comp
      */
     public void removeComp(Competence comp, Entreprise e) {
         this.competences.remove(comp);
-        
+
         for (Mission m : this.missions) {
             for (Competence c : this.competences) {
-                if(m.getCompetences().contains(comp)){
+                if (m.getCompetences().contains(comp)) {
                     m.removePersonnel(this);
                     Mission me = e.getMission(m);
                     me.removePersonnel(this);
-                    if(!m.getPersonnels().contains(this))
+                    if (!m.getPersonnels().contains(this)) {
                         this.missions.remove(m);
-                    
+                    }
+
                 }
             }
         }
@@ -192,7 +193,6 @@ public class Personnel {
 
     /**
      * Méthode permettant d'obtenir un personnel existant avec son ID
-     *
      * @param s
      * @return personnel
      */
@@ -281,9 +281,8 @@ public class Personnel {
     public ArrayList<Competence> getCompetence() {
         return this.competences;
     }
-    
-    
-    public boolean etreOccupe(Date datedeb, Date datefin){
+
+    public boolean etreOccupe(Date datedeb, Date datefin) {
         boolean occupe = false;
         for (Conge unConge : this.conges) {
             //date début congé
@@ -306,13 +305,14 @@ public class Personnel {
 
     /**
      * ajoute une mission à cette personne
+     *
      * @param uneMission
-     * @throws affecterPersException 
+     * @throws affecterPersException
      */
     public void ajouterMission(Mission uneMission) throws affecterPersException {
 
         for (Conge unConge : this.conges) {
-            
+
             //date début congé
             Date ddc = unConge.getDateDeb();
             //date fin congé
@@ -342,15 +342,16 @@ public class Personnel {
                 Date dduc = uneMission.getDatedeb();
 
                 Date dfuc = uneMission.getFin();
-
-                if (dduc.after(ddc) && dduc.before(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
-                }
-                if (dfuc.after(ddc) && dfuc.before(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
-                }
-                if (dduc.before(ddc) && dfuc.after(dfc)) {
-                    throw new affecterPersException("La mission est posé pendant une mission existant !");
+                if (m.getStat().equals("EnCours")) {
+                    if (dduc.after(ddc) && dduc.before(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission existant !");
+                    }
+                    if (dfuc.after(ddc) && dfuc.before(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission existant !");
+                    }
+                    if (dduc.before(ddc) && dfuc.after(dfc)) {
+                        throw new affecterPersException("La mission est posé pendant une mission existant !");
+                    }
                 }
 
             }
@@ -359,6 +360,5 @@ public class Personnel {
             this.missions.add(uneMission);
         }
     }
-    
-    
+
 }

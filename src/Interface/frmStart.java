@@ -17,6 +17,7 @@ import projet.Mission;
 import projet.Personnel;
 import javax.swing.table.DefaultTableModel;
 import projet.Competence;
+import projet.exceptions.affecterPersException;
 
 /**
  *
@@ -276,6 +277,7 @@ public class frmStart extends javax.swing.JFrame {
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         Date day = new Date();
         Date spinner = (Date) jSpinner1.getValue();
+        boolean estPris = false;
         if (spinner.before(day)) {
             jSpinner1.setValue(day);
         }
@@ -297,10 +299,18 @@ public class frmStart extends javax.swing.JFrame {
                     for(int i=0;i<m.getPersonnels().size();i++){
                         if (m.getPersonnels().get(i).getId()==-1){
                             for(Personnel p : frmStart.e.getPersonnel()){
-                                if(p.avoirComp(m.getCompetences().get(i)) && !p.etreOccupe(m.getDatedeb(), m.getFin())){
+                                if(p.avoirComp(m.getCompetences().get(i)) && !p.etreOccupe(m.getDatedeb(), m.getFin()) && !estPris){
                                     m.getPersonnels().set(i, p);
+                                    estPris=true;
+                                    System.out.println(p);
+                                    try {
+                                        m.getPersonnels().get(i).ajouterMission(m);
+                                    } catch (affecterPersException ex) {
+                                        Logger.getLogger(frmStart.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
                             }
+                            estPris=false;
                         }
                     }
                     m.setStat("EnCours");
@@ -331,6 +341,9 @@ public class frmStart extends javax.swing.JFrame {
         //on récupère l'index de la sélection et on vérifie si l'utilisateur a bien sélectionné une compétence
         int i=jTable2.getSelectedRow();
         if (i!=-1){
+            for(Personnel p : e.getMission().get(i).getPersonnels()){
+                p.removeMission(e.getMission().get(i));
+            }
             //on met a jour la liste des mission en supprimant la mission sélectionnée
             e.getMission().remove(i);
             majMission();

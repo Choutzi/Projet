@@ -36,7 +36,7 @@ public class jComboboxPersonnel extends JComboBox {
                 this.addItem(m.getPersonnels().get(this.row));
             }
         for(Personnel p : tab){
-            if (p.avoirComp(m.getCompetences().get(this.row)) && p.etreOccupe(m.getDatedeb(), m.getFin()))
+            if (p.avoirComp(m.getCompetences().get(this.row)) && !p.etreOccupe(m.getDatedeb(), m.getFin()))
                 this.addItem(p);
         }
     }

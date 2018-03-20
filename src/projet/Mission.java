@@ -29,6 +29,7 @@ public class Mission {
         Preparation, Planifiee, EnCours, Terminee
     };
     private String stat;
+    private statut statu;
 
     /**
      * Création d'une mission ainsi que l'ajout de compétence requise
